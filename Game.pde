@@ -2,7 +2,8 @@ import java.util.*;
 
 class Game {
   
-  ArrayList<Sprite> sprites = new ArrayList<>();
+  ArrayList<Sprite> deleteQueue = new ArrayList<Sprite>();
+  ArrayList<Sprite> sprites = new ArrayList<Sprite>();
   Player player;
   
   
@@ -27,34 +28,55 @@ class Game {
   void play() {
     println(sprites.size());
     background(#fef9ef);
+    for(Sprite s: sprites){
+      s.move();
+      s.render();
+    }
+    removeProjectiles();
+    killEnemies();
+    delete();
   }
-  
+
   void killEnemies(){
     int i = 0;
+    // loop through sprite array
     while(i < sprites.size()) {
+      // if the sprite is a Projectile
       if(sprites.get(i) instanceof Projectile){
+        // loop through the sprite array again
         for(int j = 0; j < game.sprites.size(); j++){
+          // check if there's an enemy colliding with the projectile
           if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
-            if(j > i){ 
-              sprites.remove(j);
-              sprites.remove(i);
-            }else{
-              sprites.remove(i);
-              sprites.remove(j);
-            }
-            i--;
-            break;
-          }
-          if(j == sprites.size()-1){
-            sprites.get(i).move();
-            sprites.get(i).render();
-            i++;
+            // add the sprite to the delete queue
+            pendDelete(sprites.get(j));
+            pendDelete(sprites.get(i));
           }
         }
-      }else{
-        sprites.get(i).move();
-        sprites.get(i).render();
-        i++;
+      }
+      i++;
+    }
+  }
+  
+  void removeProjectiles(){
+    for(Sprite s: sprites) {
+      if(s instanceof Projectile){
+        //the second Y and X numbers are the size of the play window
+        //will handle larger/smaller windows universal later
+        if(s.getY() <= 0 || s.getY() >= 600 || s.getX() <=0 || s.getX() >= 800){
+          pendDelete(s);
+        }
       }
     }
+  }
+  
+  void pendDelete(Sprite s){
+    deleteQueue.add(s);
+  }
+  
+  void delete(){
+    for(Sprite s: deleteQueue){
+      sprites.remove(s);
+    }
+    deleteQueue.clear();
+  }
 }
