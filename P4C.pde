@@ -1,4 +1,3 @@
-// global
 Game game = new Game();
 
 void setup() {
@@ -11,9 +10,9 @@ void draw() {
 }
 
 void keyPressed() {
-  game.keyDown(key);
+  game.player.setMovement(key, true);
 }
 
 void keyReleased() {
-  game.keyUp(key);
+  game.player.setMovement(key, false);
 }
