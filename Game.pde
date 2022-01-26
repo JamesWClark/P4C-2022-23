@@ -5,6 +5,8 @@ class Game {
   ArrayList<Sprite> sprites = new ArrayList<>();
   Player player;
   
+  
+  
   void config() {
     noStroke();
   }

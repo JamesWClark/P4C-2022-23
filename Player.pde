@@ -22,7 +22,7 @@ class Player extends AbstractSprite {
   }
   
   
-  
+ 
   void setMovement(int k, boolean b) {
     switch (k) {
       case 'w':
