@@ -27,6 +27,7 @@ class Game {
   void play() {
     println(sprites.size());
     background(#fef9ef);
+    killEnemies();
   }
   
   void killEnemies(){
@@ -57,4 +58,5 @@ class Game {
         i++;
       }
     }
+  }
 }
