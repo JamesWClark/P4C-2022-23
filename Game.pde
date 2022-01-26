@@ -25,6 +25,9 @@ class Game {
   void play() {
     println(sprites.size());
     background(#fef9ef);
+  }
+  
+  void killEnemies(){
     int i = 0;
     while(i < sprites.size()) {
       if(sprites.get(i) instanceof Projectile){
@@ -52,5 +55,4 @@ class Game {
         i++;
       }
     }
-  }
 }
