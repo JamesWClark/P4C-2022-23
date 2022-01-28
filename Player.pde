@@ -7,21 +7,38 @@ class Player extends AbstractSprite {
   }
   
   void move() {
-    if(moveKeys[0]){
+    if(moveKeys[0] && canMove("up")){
         y -= 3;
     }
-    if(moveKeys[1]){
+    if(moveKeys[1] && canMove("left")){
         x -= 3;
     }
-    if(moveKeys[2]){
+    if(moveKeys[2] && canMove("down")){
         y += 3;
     }
-    if(moveKeys[3]){
+    if(moveKeys[3] && canMove("right")){
         x += 3;
     }
   }
   
-  
+  //tests if player is on the border of the screen, and if not, is allowed to move
+  boolean canMove(String direction){
+    switch(direction){
+      case "up":
+        if(this.getY() <= 0) return false;
+        break;
+      case "down":
+        if(this.getY() >= height) return false;
+        break;
+      case "left":
+        if(this.getX() <= 0) return false;
+        break;
+      case "right":
+        if(this.getX() >= width) return false;
+        break;
+    }
+    return true;
+  }
  
   void setMovement(int k, boolean b) {
     switch (k) {
