@@ -1,6 +1,7 @@
 import java.lang.Math;
 
 abstract class AbstractSprite implements Sprite {
+  int team = 1;
   int x = 0, y = 0, w = 50, h = 50;
   int xspeed = 0, yspeed = 0;
   color col = color(255);
