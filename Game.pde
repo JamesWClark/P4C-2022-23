@@ -41,8 +41,8 @@ class Game {
     int i = 0;
     // loop through sprite array
     while(i < sprites.size()) {
-      // if the sprite is a Projectile
-      if(sprites.get(i) instanceof Projectile){
+      // if the sprite is a Projectile or if it is the player
+      if(sprites.get(i) instanceof Projectile || sprites.get(i) instanceof Player){
         // loop through the sprite array again
         for(int j = 0; j < game.sprites.size(); j++){
           // check if there's an enemy colliding with the projectile
