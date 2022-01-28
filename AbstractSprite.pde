@@ -30,6 +30,9 @@ abstract class AbstractSprite implements Sprite {
   
   void render() {
     fill(col);
+    //I know its in config, but if there's a stroke in player then it has to
+    //be called here too
+    noStroke();
     ellipse(x, y, w, h);
   }
   
