@@ -1,6 +1,7 @@
 class Player extends AbstractSprite {
   boolean[] moveKeys;
   
+  
   Player(int x, int y, int w, int h, color col) {
     super(x, y, w, h, col);
     moveKeys = new boolean[5];
