@@ -4,8 +4,11 @@ class Game {
   
   ArrayList<Sprite> deleteQueue = new ArrayList<Sprite>();
   ArrayList<Sprite> sprites = new ArrayList<Sprite>();
+  ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
   Player player;
   
+  //UI
+  Hearts hearts;
   
   
   void config() {
@@ -20,6 +23,9 @@ class Game {
     config();
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
+    
+    hearts = new Hearts(3);
+    ui.add(hearts);
     for(int x = 150; x <= 750; x += 60){
       spawn(new Bob(x-25, 100, 50, 50));
     }
@@ -32,6 +38,9 @@ class Game {
       s.move();
       s.render();
     }
+    for(UIComponent c: ui){
+      c.render();
+    }
     removeProjectiles();
     killEnemies();
     delete();
@@ -41,8 +50,8 @@ class Game {
     int i = 0;
     // loop through sprite array
     while(i < sprites.size()) {
-      // if the sprite is a Projectile or if it is the player
-      if(sprites.get(i) instanceof Projectile || sprites.get(i) instanceof Player){
+      // if the sprite is a Projectile
+      if(sprites.get(i) instanceof Projectile){
         // loop through the sprite array again
         for(int j = 0; j < game.sprites.size(); j++){
           // check if there's an enemy colliding with the projectile
@@ -50,6 +59,17 @@ class Game {
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
             pendDelete(sprites.get(i));
+          }
+        }
+      }
+      if(sprites.get(i) instanceof Player){
+        // loop through the sprite array again
+        for(int j = 0; j < game.sprites.size(); j++){
+          // check if there's an enemy colliding with the player
+          if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
+            // add the sprite to the delete queue
+            pendDelete(sprites.get(j));
+            hearts.loseHeart();
           }
         }
       }
