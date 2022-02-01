@@ -7,7 +7,6 @@ class Player extends AbstractSprite {
     moveKeys = new boolean[5];
   }
   
-  
   void move() {
     if(moveKeys[0] && canMove("up")){
         y -= 3;
