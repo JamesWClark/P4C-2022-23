@@ -9,7 +9,7 @@ class Game {
   
   //UI
   Hearts hearts;
-  
+  Ammo ammo; 
   
   void config() {
     noStroke();
@@ -25,7 +25,11 @@ class Game {
     sprites.add(player); 
     
     hearts = new Hearts(3);
+    ammo = new Ammo(10); 
+    ui.add(ammo); 
     ui.add(hearts);
+    
+    
     for(int x = 150; x <= 750; x += 60){
       spawn(new Bob(x-25, 100, 50, 50));
     }
