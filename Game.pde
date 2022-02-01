@@ -9,6 +9,11 @@ class Game {
   
   //UI
   Hearts hearts;
+  Ammo ammo; 
+  
+  //Stats
+  Stats statistics; 
+  
   
   
   void config() {
@@ -21,11 +26,18 @@ class Game {
   
   void load() {
     config();
-    player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    player = new Player(width/2, height-100, 50, 50, "assets/spaceship.png");
     sprites.add(player); 
     
+    Stats stats = new Stats(); 
     hearts = new Hearts(3);
+    ammo = new Ammo(10); 
+    
+    
+    ui.add(ammo); 
     ui.add(hearts);
+    
+    
     for(int x = 150; x <= 750; x += 60){
       spawn(new Bob(x-25, 100, 50, 50));
     }
@@ -69,6 +81,9 @@ class Game {
       fill(0, 0, 225);
       textSize(100);
       text("Game Paused", width/2, height/5);
+      textSize(30);
+      text("Shots Fired: " + Stats.shotsFired, width/5, height/3);
+      text("Enemies Killed: " + Stats.enemiesKilled, 4*width/5, height/3);
     }
   }
 
@@ -85,6 +100,8 @@ class Game {
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
             pendDelete(sprites.get(i));
+            game.ammo.addAmmo(3); 
+            Stats.enemiesKilled++; 
           }
         }
       }
