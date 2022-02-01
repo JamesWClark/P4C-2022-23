@@ -12,16 +12,7 @@ void draw() {
 
 void keyPressed() {
   game.player.setMovement(key, true);
-  if ( key == 'p' ) {
-
-    paused = !paused;
-
-    if (paused) {
-      noLoop();
-    } else {
-      loop();
-    }
-  }
+  game.checkPause();
 }
 void keyReleased() {
   game.player.setMovement(key, false);

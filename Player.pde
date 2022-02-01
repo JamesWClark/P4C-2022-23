@@ -72,6 +72,8 @@ class Player extends AbstractSprite {
         if(b == false && game.ammo.canShoot()){
           game.spawn(new Projectile(this.x, this.y - this.w/2 - 10));
           game.ammo.loseAmmo(); 
+          Stats.shotsFired++; 
+          System.out.println("You have fired " + Stats.shotsFired + " shots"); 
       }
     }
   }
