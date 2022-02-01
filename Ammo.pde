@@ -7,6 +7,12 @@ class Ammo implements UIComponent{
     this.ammoLeft = ammo;
   }
   
+  void addAmmo(int a) {
+    ammoLeft += a; 
+    if(ammoLeft >= 10) {
+      ammoLeft = 10; 
+    }
+  }
   
   boolean canShoot() {
     return canShoot; 

@@ -1,5 +1,6 @@
 Game game = new Game();
 boolean paused = false; 
+
 void setup() {
   size(800, 600);
   game.load();
