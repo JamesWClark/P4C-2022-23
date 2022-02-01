@@ -63,6 +63,7 @@ class Game {
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
             pendDelete(sprites.get(i));
+            game.ammo.addAmmo(3); 
           }
         }
       }

@@ -12,6 +12,7 @@ class Hearts implements UIComponent{
     heartsLeft--;
     if(heartsLeft <= 0){
        game.pendDelete(game.player);
+       game.ammo.canShoot = false; 
     }
   }
   
