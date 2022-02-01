@@ -7,7 +7,7 @@ class Player extends AbstractSprite {
     moveKeys = new boolean[5];
   }
   
-  
+  /*
   void render(){
    noStroke();
    fill(150);
@@ -23,7 +23,7 @@ class Player extends AbstractSprite {
    ellipse(x,y-10, w/6, h/6);
    ellipse(x,y, w/6, h/6);
    ellipse(x,y+10, w/6, h/6);
-  }
+  }*/
   
   void move() {
     if(moveKeys[0] && canMove("up")){

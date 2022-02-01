@@ -34,11 +34,14 @@ abstract class AbstractSprite implements Sprite {
     //I know its in config, but if there's a stroke in player then it has to
     //be called here too
     noStroke();
-    ellipse(x, y, w, h);
+    rect(x, y, w, h);
   }
   
   boolean collide(Sprite spr){
-    //check the x axis
+    // check the x axis
+    // this is circle collision and that is cringe, I am epic and will make
+    // hit boxes -R
+    /*
     int dx = (spr.getX() - x);
     int dy = (spr.getY() - y);
     double distance = Math.sqrt(dx * dx + dy * dy);
@@ -46,7 +49,13 @@ abstract class AbstractSprite implements Sprite {
     if(distance < (spr.getW()/2) + (w/2)){
       return true;
     }
-   
     return false;
+    */
+    boolean sprInTL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
+    boolean sprInTR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
+    boolean sprInBL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()-spr.getH()/2 > y+h/2); 
+    boolean sprInBR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()-spr.getH()/2 > y+h/2); 
+    
+    return sprInTL || sprInTR || sprInBL || sprInBR;
   }
 }
