@@ -45,6 +45,32 @@ class Game {
     killEnemies();
     delete();
   }
+  
+  //checks if game has been paused from keypress
+  void checkPause(){
+    if ( key == 'p' ) {
+      paused = !paused;
+      if (paused) {
+        noLoop();
+        game.pauseMenu(true);
+      } else {
+        loop();
+        game.pauseMenu(false);
+      }
+    }
+  }
+  
+  //creates pause menu if whenever checkPause() is true
+  void pauseMenu(boolean p){
+    if(p){
+      fill(225, 0, 0);
+      rect(width/10, (height/15), (width - (width/5)), 100, 28);
+      textAlign(CENTER);
+      fill(0, 0, 225);
+      textSize(100);
+      text("Game Paused", width/2, height/5);
+    }
+  }
 
   void killEnemies(){
     int i = 0;
