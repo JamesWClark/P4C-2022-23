@@ -86,8 +86,9 @@ class Player extends AbstractSprite {
         moveKeys[3] = b;
         break;  
       case ' ':
-        if(b == false){
+        if(b == false && game.ammo.canShoot()){
           game.spawn(new Projectile(this.x, this.y - this.w/2 - 10));
+          game.ammo.loseAmmo(); 
       }
     }
   }
