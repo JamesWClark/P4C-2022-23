@@ -1,29 +1,12 @@
 class Player extends AbstractSprite {
   boolean[] moveKeys;
+  PImage sprite;
   
-  
-  Player(int x, int y, int w, int h, color col) {
-    super(x, y, w, h, col);
+  Player(int x, int y, int w, int h, String spr) {
+    super(x, y, w, h, spr);
     moveKeys = new boolean[5];
   }
   
-  
-  void render(){
-   noStroke();
-   fill(150);
-   ellipse(x, y, w/2, h);
-   fill(200, 50, 50);
-   //yeah its not proportional/scalable, cry about it 
-   triangle(x-18,y+41, x-12, y+11, x-2, y+25);
-   triangle(x+9,y-18, x+0, y+-40, x-9, y-18);
-   triangle(x+18,y+41, x+12, y+11, x+2, y+25);
-   fill(150, 255, 255);
-   strokeWeight(1);
-   stroke(0);
-   ellipse(x,y-10, w/6, h/6);
-   ellipse(x,y, w/6, h/6);
-   ellipse(x,y+10, w/6, h/6);
-  }
   
   void move() {
     if(moveKeys[0] && canMove("up")){

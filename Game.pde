@@ -21,7 +21,7 @@ class Game {
   
   void load() {
     config();
-    player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    player = new Player(width/2, height-100, 50, 50, "assets/spaceship.png");
     sprites.add(player); 
     
     hearts = new Hearts(3);
