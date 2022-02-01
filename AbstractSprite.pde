@@ -40,7 +40,15 @@ abstract class AbstractSprite implements Sprite {
   abstract void move();
   
   void render() {
+<<<<<<< HEAD
     image(sprite,x-(w/2),y-(h/2));
+=======
+    fill(col);
+    //I know its in config, but if there's a stroke in player then it has to
+    //be called here too
+    noStroke();
+    rect(x, y, w, h);
+>>>>>>> ae62c3e (Almost made suare collision)
   }
   
   boolean collide(Sprite spr){

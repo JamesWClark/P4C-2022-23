@@ -8,6 +8,7 @@ class Player extends AbstractSprite {
   }
   
 
+
   void render(){
    //player
    ellipse(x, y, 50, 50);
@@ -43,6 +44,7 @@ class Player extends AbstractSprite {
      rect(25, 0, 30, 15);
    popMatrix();
   }
+
   
 
   void move() {
