@@ -84,8 +84,6 @@ class Game {
   void play() {
     background(200);
     lvlManager.currentLvl.decorateLvl();
-    
-    
     for(Sprite s: sprites){
       s.move();
       s.render();

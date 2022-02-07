@@ -11,6 +11,7 @@ abstract class AbstractSprite implements Sprite {
   int getY(){return y;}
   int getW(){return w;}
   int getH(){return h;}
+  PImage getImage(){return sprite;}
   
   AbstractSprite() { }
   AbstractSprite(int x, int y, String path) {
@@ -67,9 +68,17 @@ abstract class AbstractSprite implements Sprite {
     */
     boolean sprInTL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
     boolean sprInTR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
-    boolean sprInBL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()-spr.getH()/2 > y+h/2); 
-    boolean sprInBR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()-spr.getH()/2 > y+h/2); 
-    
-    return sprInTL || sprInTR || sprInBL || sprInBR;
+    boolean sprInBL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
+    boolean sprInBR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
+    PImage sprImg = spr.getImage();
+    sprImg.loadPixels();
+    if(sprInTL && sprInTR && sprInBL && sprInBR){
+      for(int i = 0; i < (sprImg.height * sprImg.width); i++){
+       print(sprImg.pixels[i] + ", "); 
+      }
+      return true;
+      
+    }
+    return false;
   }
 }
