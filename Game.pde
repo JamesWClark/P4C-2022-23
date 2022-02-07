@@ -37,7 +37,7 @@ class Game {
   }
   
   void play() {
-    println(sprites.size());
+    //println(sprites.size());
     background(#fef9ef);
     for(Sprite s: sprites){
       s.move();
