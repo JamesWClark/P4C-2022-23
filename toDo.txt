@@ -1,0 +1,9 @@
+allow the player to backtravel when in an uncleared room
+seperate load and level load methods
+make the Sprites array 2d
+update symbols upon level clear as well as level load
+possibly add other level types, like a key room, boss room or chest room
+possibly add powerups
+possibly add accesories such as other guns or visuals
+merge with main, upstream branch
+
