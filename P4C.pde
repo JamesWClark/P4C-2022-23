@@ -11,9 +11,9 @@ void draw() {
 }
 
 void keyPressed() {
-  game.player.setMovement(key, true);
+  game.player.setMovement(key, keyCode, true);
   game.checkPause();
 }
 void keyReleased() {
-  game.player.setMovement(key, false);
+  game.player.setMovement(key, keyCode, false);
 }
