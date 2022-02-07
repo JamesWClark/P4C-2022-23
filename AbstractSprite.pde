@@ -19,11 +19,22 @@ abstract class AbstractSprite implements Sprite {
     sprite = loadImage(path);
     
   }
-  AbstractSprite(int x, int y, int w, int h, String path) {
-    this(x, y, path);
+  AbstractSprite(int x, int y, int w, int h) {
+    this.x = x;
+    this.y = y;
     this.w = w;
     this.h = h;
-    sprite.resize(w, h);
+  }
+  AbstractSprite(int x, int y, int w, int h, String path) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    sprite = loadImage(path);
+  }
+  AbstractSprite(int x, int y, int w, int h, color col) {
+    this(x, y, w, h);
+    this.col = col;
   }
   
   abstract void move();

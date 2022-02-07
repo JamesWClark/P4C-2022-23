@@ -1,10 +1,27 @@
-class Projectile extends AbstractSprite{
+class Projectile extends AbstractSprite {
+  boolean render = true;
+  int finalX, finalY, projectileSpeed = 30;
+  double rise, run, slope;
   
-  public Projectile(int x, int y){
-    super(x, y, 5, 5, "assets/laser.png");
+  public Projectile(int x, int y, int finalX, int finalY, int w, int h, color col){
+   super(x, y, w, h, col); 
+   this.finalX = finalX;
+   this.finalY = finalY;
+   rise = finalY - y;
+   run = finalX - x;
   }
   
   void move(){
-    y -= 10;
+   y += rise/20;
+   x += run/20;
+   if((x > width) || (x < 0) || (y > height) || (y < 0)){
+     render = false;
+   }
+  }
+  
+  void render(){
+    if(render){
+     ellipse(x, y, w, h);
+    }
   }
 }
