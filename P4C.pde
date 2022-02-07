@@ -1,5 +1,6 @@
 Game game = new Game();
 boolean paused = false; 
+
 void setup() {
   size(800, 600);
   game.load();
@@ -10,15 +11,8 @@ void draw() {
 }
 
 void keyPressed() {
-  game.player.setMovement(key , keyCode, true);
-  if ( key == 'p' ) {
-    paused = !paused;
-    if (paused) {
-      noLoop();
-    } else {
-      loop();
-    }
-  }
+  game.player.setMovement(key, keyCode, true);
+  game.checkPause();
 }
 void keyReleased() {
   game.player.setMovement(key, keyCode, false);

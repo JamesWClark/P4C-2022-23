@@ -1,6 +1,6 @@
 class Bob extends AbstractSprite {
   Bob(int x, int y, int w, int h) {
-    super(x, y, w, h, color(#fe6d73));
+    super(x, y, w, h, "assets/ufo.png");
     changeSpeed();
   }
   

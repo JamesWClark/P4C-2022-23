@@ -13,22 +13,21 @@ abstract class AbstractSprite implements Sprite {
   int getH(){return h;}
   
   AbstractSprite() { }
-  AbstractSprite(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }
   AbstractSprite(int x, int y, String path) {
     this.x = x;
     this.y = y;
     sprite = loadImage(path);
+    
   }
   AbstractSprite(int x, int y, int w, int h) {
-    this(x, y);
+    this.x = x;
+    this.y = y;
     this.w = w;
     this.h = h;
   }
   AbstractSprite(int x, int y, int w, int h, String path) {
-    this(x, y);
+    this.x = x;
+    this.y = y;
     this.w = w;
     this.h = h;
     sprite = loadImage(path);
@@ -41,11 +40,7 @@ abstract class AbstractSprite implements Sprite {
   abstract void move();
   
   void render() {
-    fill(col);
-    //I know its in config, but if there's a stroke in player then it has to
-    //be called here too
-    noStroke();
-    ellipse(x, y, w, h);
+    image(sprite,x-(w/2),y-(h/2));
   }
   
   boolean collide(Sprite spr){

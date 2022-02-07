@@ -135,7 +135,7 @@ class Player extends AbstractSprite {
         case 0x10:
         moveKeys[4] = b;
         break;
-      }
+    }
   }
   
   void fire(){
