@@ -12,6 +12,9 @@ class Ammo implements UIComponent{
     if(ammoLeft >= 10) {
       ammoLeft = 10; 
     }
+    if(ammoLeft > 0){
+      canShoot = true;
+    }
   }
   
   boolean canShoot() {
