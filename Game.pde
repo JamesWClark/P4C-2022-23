@@ -72,6 +72,8 @@ class Game {
     }
   }
   
+
+  
   //creates pause menu if whenever checkPause() is true
   void pauseMenu(boolean p){
     if(p){
