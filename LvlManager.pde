@@ -6,35 +6,65 @@ class LvlManager {
   Lvl currentLvl;
 
   LvlManager() {
-    Lvl startLvl = new Lvl(0, 0);
-    this.currentLvl = startLvl;
-    startLvl.unlocked = true;
-    lvls.add(startLvl);
+    currentLvl = new Lvl(0, 0);
+    currentLvl.unlocked = true;
+    lvls.add(currentLvl);
   }
 
   void changeLevels(String direction) {
     //allows the player to move to a new level if they've killed every enemy in the current level
     if(currentLvl.enemsKilled == currentLvl.enems.length){
       currentLvl.unlocked = true;
+      //print(currentLvl.unlocked);
+    }
+   
+    //executes meat of the method if player is able to switch levels 
+    if(currentLvl.unlocked){
+    } else {
+      switch(direction){
+        case "up": 
+        if(adjacentLvls[0] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "down": 
+        if(adjacentLvls[1] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "left":
+        if(adjacentLvls[2] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "right": 
+        if(adjacentLvls[3] != null){
+        } else {
+          return;
+        } 
+        break;
+      }
     }
     
     //moves levels
-    if (currentLvl.unlocked) {
-      switch(direction) {
-      case  "up":
-        playerLevelY++;
-        break;
-      case "down":
-        playerLevelY--;
-        break;
-      case "left":
-        playerLevelX--;
-        break;
-      case "right":
-        playerLevelX++;
-        break;
-      }
-      
+    switch(direction) {
+    case  "up":
+      playerLevelY++;
+      break;
+    case "down":
+      playerLevelY--;
+      break;
+    case "left":
+      playerLevelX--;
+      break;
+    case "right":
+      playerLevelX++;
+      break;
+    }
+
       //queues up next lvl
       boolean hasBeenMade = false;
       int originalIndex = 0;
@@ -78,8 +108,7 @@ class LvlManager {
         game.player.x = 0;
         game.player.y = playerY;
       }
-    }
-  }
+    } 
   
   //places all adjacent levels into an array 
   void setAdjacent(){
