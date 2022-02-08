@@ -6,6 +6,8 @@ class Game {
   ArrayList<Sprite> sprites = new ArrayList<Sprite>();
   //ArrayList<Sprite> lvlSprites = new ArrayList<Sprite>();
   ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
+  //creates a delete queue for the UI
+  ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
   Player player;
   
   //UI
@@ -48,7 +50,6 @@ class Game {
     sprites.add(player); 
     
     Stats stats = new Stats(); 
-    hearts = new Hearts(3);
     ammo = new Ammo(10); 
     
     
@@ -96,6 +97,7 @@ class Game {
     removeProjectiles();
     killEnemies();
     delete();
+    deleteUI();
   }
   
   //checks if game has been paused from keypress
@@ -183,11 +185,22 @@ class Game {
   void pendDelete(Sprite s){
     deleteQueue.add(s);
   }
+  //creates a pendDelete for the UI components
+  void pendDeleteUI(UIComponent c){
+    deleteQueueUI.add(c);
+  }  
   
   void delete(){
     for(Sprite s: deleteQueue){
       sprites.remove(s);
     }
     deleteQueue.clear();
+  }
+  //allows the UI to be deleted
+  void deleteUI(){
+    for(UIComponent c: deleteQueueUI){
+      ui.remove(c);
+    }
+    deleteQueueUI.clear();
   }
 }

@@ -10,6 +10,9 @@ class Hearts implements UIComponent{
   
   void loseHeart(){
     heartsLeft--;
+    //Addes a delete request eachtime loseHearts is called
+    game.pendDeleteUI(game.hearts);
+    game.deleteUI();
     if(heartsLeft <= 0){
        game.pendDelete(game.player);
        game.ammo.canShoot = false; 
@@ -18,7 +21,8 @@ class Hearts implements UIComponent{
   
   void render(){
     for(int i = 0; i < heartsLeft;i++){
-      image(sprite, 6 + (30 * i),582 - 12);
+      //Always moves to bottom of screen
+      image(sprite, 6 + (30 * i), height - 71);
     }
   }
 }
