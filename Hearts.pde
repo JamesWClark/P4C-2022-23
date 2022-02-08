@@ -21,7 +21,8 @@ class Hearts implements UIComponent{
   
   void render(){
     for(int i = 0; i < heartsLeft;i++){
-      image(sprite, 6 + (30 * i),582 - 12);
+      //Always moves to bottom of screen
+      image(sprite, 6 + (30 * i), height - 71);
     }
   }
 }
