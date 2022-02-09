@@ -18,6 +18,7 @@ class Weapon implements UIComponent{
     selected = false;
   }
   
+  //while player has ammo and the magazine isn't full, add a bullet to the magazine;
   void reload(){
     if(ammoCount > 0) {
         while((loadedAmmo < magSize) && (ammoCount > 0)) {
@@ -36,5 +37,7 @@ class Weapon implements UIComponent{
   }
   
   void render() {
+    //rendering weapon tile
+    rect(width - width/10, height - height/10, 50, 50, 28);
   }
 }

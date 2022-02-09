@@ -30,10 +30,10 @@ class Ammo implements UIComponent{
   }
   
   void render(){
-    for(int i = 0; i < ammoLeft;i++){
-      fill(#000000);
-      //ellipse(25,20+(25*i), 25, 25);
-      rect(25, 20+(25*i), 25, 25);
-    }
+    //for(int i = 0; i < ammoLeft;i++){
+    //  fill(#000000);
+    //  //ellipse(25,20+(25*i), 25, 25);
+    //  rect(25, 20+(25*i), 25, 25);
+    //}
   }
 }

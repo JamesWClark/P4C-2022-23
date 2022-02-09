@@ -11,6 +11,7 @@ class Projectile extends AbstractSprite {
    run = finalX - x;
   }
   
+  
   void move(){
    y += rise/20;
    x += run/20;
@@ -18,6 +19,20 @@ class Projectile extends AbstractSprite {
      render = false;
    }
   }
+  
+  
+  /*
+  void move(){
+    double slope = rise/run;
+    y += slope;
+    x += 1;
+    
+    if((x > width) || (x < 0) || (y > height) || (y < 0)){
+     render = false;
+   }
+  }
+  */
+  
   
   void render(){
     if(render){

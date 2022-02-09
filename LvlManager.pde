@@ -2,39 +2,70 @@ class LvlManager {
   int playerLevelX = 0, playerLevelY = 0;
   
   Lvl adjacentLvls[] = new Lvl[4];
+  int symbolIndexList[] = new int[4];
   ArrayList<Lvl> lvls = new ArrayList<>();
   Lvl currentLvl;
 
   LvlManager() {
-    Lvl startLvl = new Lvl(0, 0);
-    this.currentLvl = startLvl;
-    startLvl.unlocked = true;
-    lvls.add(startLvl);
+    currentLvl = new Lvl(0, 0);
+    currentLvl.unlocked = true;
+    lvls.add(currentLvl);
   }
 
   void changeLevels(String direction) {
     //allows the player to move to a new level if they've killed every enemy in the current level
     if(currentLvl.enemsKilled == currentLvl.enems.length){
       currentLvl.unlocked = true;
+      //print(currentLvl.unlocked);
+    }
+   
+    //executes meat of the method if player is able to switch levels 
+    if(currentLvl.unlocked){
+    } else {
+      switch(direction){
+        case "up": 
+        if(adjacentLvls[0] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "down": 
+        if(adjacentLvls[1] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "left":
+        if(adjacentLvls[2] != null){
+        } else {
+          return;
+        } 
+        break;
+        case "right": 
+        if(adjacentLvls[3] != null){
+        } else {
+          return;
+        } 
+        break;
+      }
     }
     
     //moves levels
-    if (currentLvl.unlocked) {
-      switch(direction) {
-      case  "up":
-        playerLevelY++;
-        break;
-      case "down":
-        playerLevelY--;
-        break;
-      case "left":
-        playerLevelX--;
-        break;
-      case "right":
-        playerLevelX++;
-        break;
-      }
-      
+    switch(direction) {
+    case  "up":
+      playerLevelY++;
+      break;
+    case "down":
+      playerLevelY--;
+      break;
+    case "left":
+      playerLevelX--;
+      break;
+    case "right":
+      playerLevelX++;
+      break;
+    }
+
       //queues up next lvl
       boolean hasBeenMade = false;
       int originalIndex = 0;
@@ -78,8 +109,7 @@ class LvlManager {
         game.player.x = 0;
         game.player.y = playerY;
       }
-    }
-  }
+    } 
   
   //places all adjacent levels into an array 
   void setAdjacent(){
@@ -124,20 +154,36 @@ class LvlManager {
       }
     }
   }
+  
+  void updateSymbols(){
+    for(int i = 0; i < symbolIndexList.length; i++){
+      game.pendDelete(game.sprites.get(i));
+      if(adjacentLvls[i] == null || !(adjacentLvls[i].unlocked)){
+         spawnSymbols(i, "danger");
+       } else {
+         spawnSymbols(i, "unlocked");
+       }
+    }
+  }
+  
   //method to assist addSymbols
   void spawnSymbols(int i, String name){
     switch(i){
       case 0:
-       game.spawn(new StationarySprite(width/2, 0, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width/2 - 25, 15, "assets/" + name + ".png"));
+       symbolIndexList[0] = game.sprites.size() - 1;
        break;
        case 1:
-       game.spawn(new StationarySprite(width/2, height - 50, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width/2 - 25, height - 65, "assets/" + name + ".png"));
+       symbolIndexList[1] = game.sprites.size() - 1;
        break;
        case 2:
-       game.spawn(new StationarySprite(0, height/2, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(15, height/2, "assets/" + name + ".png"));
+       symbolIndexList[2] = game.sprites.size() - 1;
        break;
        case 3:
-       game.spawn(new StationarySprite(width - 50, height/2, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width - 65, height/2, "assets/" + name + ".png"));
+       symbolIndexList[3] = game.sprites.size() - 1;
        break;
     }
   }
