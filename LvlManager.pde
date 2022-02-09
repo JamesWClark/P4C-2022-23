@@ -2,6 +2,7 @@ class LvlManager {
   int playerLevelX = 0, playerLevelY = 0;
   
   Lvl adjacentLvls[] = new Lvl[4];
+  int symbolIndexList[] = new int[4];
   ArrayList<Lvl> lvls = new ArrayList<>();
   Lvl currentLvl;
 
@@ -153,20 +154,36 @@ class LvlManager {
       }
     }
   }
+  
+  void updateSymbols(){
+    for(int i = 0; i < symbolIndexList.length; i++){
+      game.pendDelete(game.sprites.get(i));
+      if(adjacentLvls[i] == null || !(adjacentLvls[i].unlocked)){
+         spawnSymbols(i, "danger");
+       } else {
+         spawnSymbols(i, "unlocked");
+       }
+    }
+  }
+  
   //method to assist addSymbols
   void spawnSymbols(int i, String name){
     switch(i){
       case 0:
-       game.spawn(new StationarySprite(width/2, 0, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width/2 - 25, 15, "assets/" + name + ".png"));
+       symbolIndexList[0] = game.sprites.size() - 1;
        break;
        case 1:
-       game.spawn(new StationarySprite(width/2, height - 50, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width/2 - 25, height - 65, "assets/" + name + ".png"));
+       symbolIndexList[1] = game.sprites.size() - 1;
        break;
        case 2:
-       game.spawn(new StationarySprite(0, height/2, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(15, height/2, "assets/" + name + ".png"));
+       symbolIndexList[2] = game.sprites.size() - 1;
        break;
        case 3:
-       game.spawn(new StationarySprite(width - 50, height/2, "assets/" + name + ".png"));
+       game.spawn(new StationarySprite(width - 65, height/2, "assets/" + name + ".png"));
+       symbolIndexList[3] = game.sprites.size() - 1;
        break;
     }
   }

@@ -4,7 +4,6 @@ class Game {
   
   ArrayList<Sprite> deleteQueue = new ArrayList<Sprite>();
   ArrayList<Sprite> sprites = new ArrayList<Sprite>();
-  //ArrayList<Sprite> lvlSprites = new ArrayList<Sprite>();
   ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
   //creates a delete queue for the UI
   ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
@@ -82,10 +81,9 @@ class Game {
   }
   
   void play() {
-    //println(sprites.size());
+    background(200);
+    lvlManager.currentLvl.decorateLvl();
     
-    //sets background color to current level color
-    background(lvlManager.currentLvl.col);
     
     for(Sprite s: sprites){
       s.move();
@@ -140,7 +138,7 @@ class Game {
           // check if there's an enemy colliding with the projectile
           if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
             // updates enemies killed in current level
-            lvlManager.currentLvl.enemsKilled++;
+            lvlManager.currentLvl.iterateEnems(1);
             
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
@@ -156,7 +154,7 @@ class Game {
           // check if there's an enemy colliding with the player
           if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
             // updates enemies killed in current level
-            lvlManager.currentLvl.enemsKilled++;
+            lvlManager.currentLvl.iterateEnems(1);
             
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));

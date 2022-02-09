@@ -5,7 +5,7 @@ class Hearts implements UIComponent{
   Hearts(int lives){
     this.heartsLeft = lives;
     sprite = loadImage("assets/heart.png");
-    sprite.resize(25, 25);
+    sprite.resize(50, 50);
   }
   
   void loseHeart(){
@@ -22,7 +22,7 @@ class Hearts implements UIComponent{
   void render(){
     for(int i = 0; i < heartsLeft;i++){
       //Always moves to bottom of screen
-      image(sprite, 6 + (30 * i), height - 71);
+      image(sprite, 24 + (60 * i), height - 60);
     }
   }
 }
