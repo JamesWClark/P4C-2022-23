@@ -6,7 +6,8 @@ class Player extends AbstractSprite {
     super(x, y, w, h, col);
     moveKeys = new boolean[5];
   }
-  
+
+
   void render(){
    //player
    ellipse(x, y, 50, 50);
@@ -42,7 +43,8 @@ class Player extends AbstractSprite {
      rect(25, 0, 30, 15);
    popMatrix();
   }
-  
+
+ 
   void move() {
     //increases speed if sprinting
     if(moveKeys[4]){

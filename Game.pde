@@ -21,6 +21,7 @@ class Game {
   
   void config() {
     noStroke();
+    rectMode(CENTER);
   }
   
   void spawn(Sprite sprite){
@@ -81,10 +82,10 @@ class Game {
   }
   
   void play() {
+
     background(200);
     lvlManager.currentLvl.decorateLvl();
-    
-    
+
     for(Sprite s: sprites){
       s.move();
       s.render();
