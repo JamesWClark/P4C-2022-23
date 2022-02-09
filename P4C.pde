@@ -8,6 +8,7 @@ void setup() {
 
 void draw() {
   game.play();
+  cursor(CROSS); 
 }
 
 void keyPressed() {
