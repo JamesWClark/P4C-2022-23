@@ -11,14 +11,6 @@ class Player extends AbstractSprite {
    //player
    ellipse(x, y, 50, 50);
    
-   //prototype rotate rectangle towards cursor
-   //pushMatrix();
-   //  rectMode(CENTER);
-   //  translate(x, y);
-   //  rotate(atan2(mouseY - y, mouseX - x));
-   //  rect(0, 0, 30, 15);
-   //popMatrix();
-  
    //appendages
     //arms
     pushMatrix();
