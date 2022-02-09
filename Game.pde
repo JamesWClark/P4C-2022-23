@@ -100,8 +100,8 @@ class Game {
   }
   
   //checks if game has been paused from keypress
-  void checkPause(){
-    if ( key == 'p' ) {
+  void checkPause(char c){
+    if ( c == 'p' ) {
       paused = !paused;
       if (paused) {
         noLoop();
@@ -119,7 +119,6 @@ class Game {
   void pauseMenu(boolean p){
     if(p){
       fill(225, 0, 0);
-      rect(width/10, (height/15), (width - (width/5)), 100, 28);
       textAlign(CENTER);
       fill(0, 0, 225);
       textSize(100);

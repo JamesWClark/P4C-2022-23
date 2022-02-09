@@ -13,7 +13,7 @@ void draw() {
 
 void keyPressed() {
   game.player.setMovement(key, keyCode, true);
-  game.checkPause();
+  game.checkPause(key);
 }
 void keyReleased() {
   game.player.setMovement(key, keyCode, false);
