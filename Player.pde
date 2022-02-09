@@ -6,7 +6,6 @@ class Player extends AbstractSprite {
     super(x, y, w, h, col);
     moveKeys = new boolean[5];
   }
-  
 
 
   void render(){
@@ -45,8 +44,7 @@ class Player extends AbstractSprite {
    popMatrix();
   }
 
-  
-
+ 
   void move() {
     //increases speed if sprinting
     if(moveKeys[4]){
