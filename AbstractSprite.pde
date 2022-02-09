@@ -51,6 +51,7 @@ abstract class AbstractSprite implements Sprite {
     boolean sprInTR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
     boolean sprInBL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
     boolean sprInBR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
+    /* this will be pixel perfect eventually
     PImage sprImg = spr.getImage();
     sprImg.loadPixels();
     if(sprInTL && sprInTR && sprInBL && sprInBR){
@@ -61,5 +62,7 @@ abstract class AbstractSprite implements Sprite {
       
     }
     return false;
+    */
+    return sprInTL && sprInTR && sprInBL && sprInBR;
   }
 }
