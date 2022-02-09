@@ -11,6 +11,7 @@ abstract class AbstractSprite implements Sprite {
   int getY(){return y;}
   int getW(){return w;}
   int getH(){return h;}
+  PImage getImage(){return sprite;}
   
   AbstractSprite() { }
   AbstractSprite(int x, int y, String path) {
@@ -44,7 +45,10 @@ abstract class AbstractSprite implements Sprite {
   }
   
   boolean collide(Sprite spr){
-    //check the x axis
+    // check the x axis
+    // this is circle collision and that is cringe, I am epic and will make
+    // hit boxes -R
+    /*
     int dx = (spr.getX() - x);
     int dy = (spr.getY() - y);
     double distance = Math.sqrt(dx * dx + dy * dy);
@@ -52,7 +56,24 @@ abstract class AbstractSprite implements Sprite {
     if(distance < (spr.getW()/2) + (w/2)){
       return true;
     }
-   
     return false;
+    */
+    boolean sprInTL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
+    boolean sprInTR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()+spr.getH()/2 > y-h/2); 
+    boolean sprInBL = (spr.getX()+spr.getW()/2 > x-w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
+    boolean sprInBR = (spr.getX()-spr.getW()/2 < x+w/2 && spr.getY()-spr.getH()/2 < y+h/2); 
+    /* this will be pixel perfect eventually
+    PImage sprImg = spr.getImage();
+    sprImg.loadPixels();
+    if(sprInTL && sprInTR && sprInBL && sprInBR){
+      for(int i = 0; i < (sprImg.height * sprImg.width); i++){
+       print(sprImg.pixels[i] + ", "); 
+      }
+      return true;
+      
+    }
+    return false;
+    */
+    return sprInTL && sprInTR && sprInBL && sprInBR;
   }
 }

@@ -3,7 +3,7 @@ class LvlManager {
   
   Lvl adjacentLvls[] = new Lvl[4];
   int symbolIndexList[] = new int[4];
-  ArrayList<Lvl> lvls = new ArrayList<>();
+  ArrayList<Lvl> lvls = new ArrayList<Lvl>();
   Lvl currentLvl;
 
   LvlManager() {
