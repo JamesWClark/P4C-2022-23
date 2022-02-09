@@ -21,6 +21,7 @@ class Game {
   
   void config() {
     noStroke();
+    rectMode(CENTER);
   }
   
   void spawn(Sprite sprite){
