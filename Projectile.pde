@@ -7,11 +7,11 @@ class Projectile extends AbstractSprite {
    super(x, y, w, h, col); 
    this.finalX = finalX;
    this.finalY = finalY;
-   rise = (double)(finalY - y)/20;
-   run = (double)(finalX - x)/20;
-   double speed = 1;
-   degree = (speed / (Math.abs(rise) + Math.abs(run)));
-   println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
+   rise = (double)(finalY - y);
+   run = (double)(finalX - x);
+   
+   degree = (10 / (Math.abs(rise) + Math.abs(run)));
+   
   }
   
   void move(){
