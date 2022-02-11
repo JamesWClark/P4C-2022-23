@@ -21,7 +21,11 @@ class Lvl {
   }
   
   void updateLvl(){
-    //initializes level enemies based off seed 
+    //initializes level enemies based off seed 5
+    
+    //something breaks with "Array index out of bound: -1" I cannot replicate it consistently
+    //I'm guessing enemsKilled can be more than seed and break it
+    println("Seed: " + seed + " enemsKilled: :" + enemsKilled);
     enems = new Bob[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
       Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 50, 50);
@@ -48,6 +52,8 @@ class Lvl {
     text(seed, width/2, height/2 + 80); 
     
       //sci-fi rect deco
+    // this is cool, except probably dont want to draw the background, leave it up to an image -R
+    /*
     rectMode(CENTER);
     for(int i = 1; i <= 10; i++){
       if(i <= 5){
@@ -64,7 +70,7 @@ class Lvl {
         popMatrix();
       }
     }
-    
+    */
     pop();
   }
 }
