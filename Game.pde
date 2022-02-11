@@ -49,7 +49,7 @@ class Game {
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
     
-    Stats stats = new Stats(); 
+    //Stats stats = new Stats(); 
     ammo = new Ammo(10); 
     
     
@@ -146,7 +146,7 @@ class Game {
             pendDelete(sprites.get(j));
             pendDelete(sprites.get(i));
             game.ammo.addAmmo(3); 
-            Stats.enemiesKilled++; 
+            statistics.enemiesKilled++; 
           }
         }
       }
