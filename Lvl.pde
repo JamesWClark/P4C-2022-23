@@ -28,7 +28,7 @@ class Lvl {
     println("Seed: " + seed + " enemsKilled: :" + enemsKilled);
     enems = new Bob[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
-      Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 50, 50);
+      Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
       enems[i] = bob;
     }
   }
