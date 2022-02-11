@@ -94,7 +94,7 @@ class LvlManager {
       //changes location of player to "transition" between levels
       switch(direction){
         case "up":
-        game.player.y = 600;
+        game.player.y = height;
         game.player.x = playerX;
         break;
         case "down":
@@ -102,7 +102,7 @@ class LvlManager {
         game.player.x = playerX;
         break;
         case "left":
-        game.player.x = 800;
+        game.player.x = width;
         game.player.y = playerY;
         break;
         case "right":
