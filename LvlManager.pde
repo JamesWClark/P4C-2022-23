@@ -1,10 +1,11 @@
 class LvlManager {
   int playerLevelX = 0, playerLevelY = 0;
   
+  Lvl currentLvl;
   Lvl adjacentLvls[] = new Lvl[4];
   int symbolIndexList[] = new int[4];
   ArrayList<Lvl> lvls = new ArrayList<Lvl>();
-  Lvl currentLvl;
+  
 
   LvlManager() {
     currentLvl = new Lvl(0, 0);
