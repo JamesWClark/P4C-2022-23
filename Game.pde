@@ -9,6 +9,7 @@ class Game {
   ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
   PImage BG;
   Player player;
+  boolean paused = false; 
   
   //UI
   Hearts hearts;
