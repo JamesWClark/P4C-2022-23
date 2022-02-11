@@ -1,7 +1,7 @@
 Game game = new Game();
 
 void setup() {
-  size(1200, 1000);
+  size(900, 700);
   game.load();
 }
 
