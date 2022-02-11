@@ -7,6 +7,7 @@ class Game {
   ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
   //creates a delete queue for the UI
   ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
+  PImage BG;
   Player player;
   
   //UI
@@ -20,6 +21,9 @@ class Game {
   LvlManager lvlManager = new LvlManager();
   
   void config() {
+    BG = loadImage("assets/background.png");
+    BG.resize(width, height);
+    background(BG);
     noStroke();
     rectMode(CENTER);
   }
@@ -49,7 +53,12 @@ class Game {
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
     
+<<<<<<< HEAD
     //Stats stats = new Stats(); 
+=======
+    //why is this here?
+    Stats stats = new Stats(); 
+>>>>>>> d433824c314272343ce716b4c23056c51efea3ef
     ammo = new Ammo(10); 
     
     
@@ -82,8 +91,8 @@ class Game {
   }
   
   void play() {
-
-    background(200);
+    //bg.resize(width, height);
+    background(BG);
     lvlManager.currentLvl.decorateLvl();
 
     for(Sprite s: sprites){
