@@ -53,6 +53,7 @@ class Game {
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
     
+    //why is this here?
     Stats stats = new Stats(); 
     ammo = new Ammo(10); 
     

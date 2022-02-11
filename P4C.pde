@@ -2,7 +2,7 @@ Game game = new Game();
 boolean paused = false; 
 
 void setup() {
-  size(800, 700);
+  size(1200, 1000);
   game.load();
 }
 
