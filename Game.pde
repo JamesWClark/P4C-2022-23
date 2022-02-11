@@ -27,6 +27,7 @@ class Game {
     background(BG);
     noStroke();
     rectMode(CENTER);
+    imageMode(CENTER);
   }
   
   void spawn(Sprite sprite){
@@ -66,7 +67,7 @@ class Game {
     if(lvlManager.currentLvl.enems.length > 0){
       try{
         for(int x = 0; x < lvlManager.currentLvl.enems.length; x++){
-          spawn(new Bob(lvlManager.currentLvl.enems[x].x, lvlManager.currentLvl.enems[x].y, 50, 50));
+          spawn(new Bob(lvlManager.currentLvl.enems[x].x, lvlManager.currentLvl.enems[x].y, lvlManager.currentLvl.enems[x].w, lvlManager.currentLvl.enems[x].h));
         }
       } catch (NullPointerException e) {
        e.printStackTrace();

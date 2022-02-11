@@ -2,7 +2,7 @@ import java.lang.Math;
 
 abstract class AbstractSprite implements Sprite {
   int team = 1;
-  int x = 0, y = 0, w = 50, h = 50;
+  int x = 0, y = 0, w, h;
   int xspeed = 0, yspeed = 0;
   color col = color(255);
   PImage sprite;
@@ -27,11 +27,13 @@ abstract class AbstractSprite implements Sprite {
     this.h = h;
   }
   AbstractSprite(int x, int y, int w, int h, String path) {
+    println(w + ", " + h);
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     sprite = loadImage(path);
+    sprite.resize(w, h);
   }
   AbstractSprite(int x, int y, int w, int h, color col) {
     this(x, y, w, h);
@@ -41,7 +43,9 @@ abstract class AbstractSprite implements Sprite {
   abstract void move();
   
   void render() {
-    image(sprite,x-(w/2),y-(h/2));
+    //rect(x,y,w,h);
+    image(sprite,x,y);
+    
   }
   
   boolean collide(Sprite spr){
