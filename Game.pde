@@ -67,7 +67,10 @@ class Game {
     if(lvlManager.currentLvl.enems.length > 0){
       try{
         for(int x = 0; x < lvlManager.currentLvl.enems.length; x++){
-          spawn(new Bob(lvlManager.currentLvl.enems[x].x, lvlManager.currentLvl.enems[x].y, lvlManager.currentLvl.enems[x].w, lvlManager.currentLvl.enems[x].h));
+         Bob b = new Bob(lvlManager.currentLvl.enems[x].x, lvlManager.currentLvl.enems[x].y, lvlManager.currentLvl.enems[x].w, lvlManager.currentLvl.enems[x].h);
+         spawn(b);
+
+          
         }
       } catch (NullPointerException e) {
        e.printStackTrace();
@@ -96,7 +99,18 @@ class Game {
     for(Sprite s: sprites){
       s.move();
       s.render();
+       //checks if bob collides with other bobs
+      if(s instanceof Bob){
+         for(Sprite b: sprites){
+           if( b instanceof Bob && s!=b){
+             if(s.collide(b)){
+              s.collision(b);              
+             }
+           }
+         }
+       }
     }
+      
     for(UIComponent c: ui){
       c.render();
     }
@@ -151,7 +165,8 @@ class Game {
             
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
-            pendDelete(sprites.get(i));
+            pendDelete(sprites.get(i));         
+
             game.ammo.addAmmo(3); 
             Stats.enemiesKilled++; 
           }
@@ -163,8 +178,7 @@ class Game {
           // check if there's an enemy colliding with the player
           if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
             // updates enemies killed in current level
-            lvlManager.currentLvl.iterateEnems(1);
-            
+            lvlManager.currentLvl.iterateEnems(1); 
             // add the sprite to the delete queue
             pendDelete(sprites.get(j));
             hearts.loseHeart();
@@ -173,6 +187,7 @@ class Game {
       }
       i++;
     }
+    
   }
   
   void removeProjectiles(){

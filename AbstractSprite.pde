@@ -11,7 +11,10 @@ abstract class AbstractSprite implements Sprite {
   int getY(){return y;}
   int getW(){return w;}
   int getH(){return h;}
+  int getXSpeed(){return xspeed;}
+  int getYSpeed(){return yspeed;}
   PImage getImage(){return sprite;}
+  
   
   AbstractSprite() { }
   
@@ -41,6 +44,9 @@ abstract class AbstractSprite implements Sprite {
   }
   
   abstract void move();
+  abstract void collision(Sprite other);
+  abstract void setXSpeed(int xspeed);
+  abstract void setYSpeed(int yspeed);
   
   void render() {
     //rect(x,y,w,h);
