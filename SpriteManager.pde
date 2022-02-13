@@ -3,9 +3,37 @@ class SpriteManager {
   ArrayList<AbstractSprite> deleteQueue = new ArrayList<AbstractSprite>();
   ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>();
 
+  void manage() {
+    for(Sprite s: sprites){
+      s.move();
+      s.render();
+    } 
+    removeProjectiles();
+    killEnemies();
+    delete();
+  }
   
-  void spawn(AbstractSprite sprite){
-    sprites.add(sprite);
+void removeProjectiles(){
+    for(AbstractSprite s: sprites) {
+      if(s instanceof Projectile){
+        //the second Y and X numbers are the size of the play window
+        //will handle larger/smaller windows universal later
+        if(s.y <= 0 || s.y >= height  || s.x <= 0 || s.x >= width){
+          pendDelete(s);
+        }
+      }
+    }
+  }
+  
+  void delete(){
+    for(Sprite s: deleteQueue){
+      sprites.remove(s);
+    }
+    deleteQueue.clear();
+  }
+  
+  void pendDelete(AbstractSprite s){
+    deleteQueue.add(s);
   }
   
   void killEnemies(){
@@ -47,26 +75,13 @@ class SpriteManager {
     }
   }
   
-  void removeProjectiles(){
-    for(AbstractSprite s: sprites) {
-      if(s instanceof Projectile){
-        //the second Y and X numbers are the size of the play window
-        //will handle larger/smaller windows universal later
-        if(s.y <= 0 || s.y >= height  || s.x <= 0 || s.x >= width){
-          pendDelete(s);
-        }
-      }
-    }
+  void spawn(AbstractSprite sprite){
+    sprites.add(sprite);
   }
   
-  void delete(){
-    for(Sprite s: deleteQueue){
-      sprites.remove(s);
-    }
-    deleteQueue.clear();
-  }
   
-  void pendDelete(AbstractSprite s){
-    deleteQueue.add(s);
-  }
+  
+
+  
+
 }

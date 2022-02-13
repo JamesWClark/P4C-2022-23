@@ -2,8 +2,9 @@ import java.util.*;
 
 class Game {
   
-  ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
-  ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
+  SpriteManager sprites = new SpriteManager();
+  UIManager ui = new UIManager();
+
   
   PImage BG;
   Player player;
@@ -82,22 +83,16 @@ class Game {
     ui.add(hearts);
   }
   
+  
+  
   void play() {
     //bg.resize(width, height);
     background(BG);
     lvlManager.currentLvl.decorateLvl();
 
-    for(Sprite s: sprites){
-      s.move();
-      s.render();
-    }
-    for(UIComponent c: ui){
-      c.render();
-    }
-    removeProjectiles();
-    killEnemies();
-    delete();
-    deleteUI();
+    sprites.manage();
+    ui.manage();
+
   }
   
   //checks if game has been paused from keypress
@@ -128,16 +123,5 @@ class Game {
     }
   }
   
-  //creates a pendDelete for the UI components
-  void pendDeleteUI(UIComponent c){
-    deleteQueueUI.add(c);
-  }  
 
-  //allows the UI to be deleted
-  void deleteUI(){
-    for(UIComponent c: deleteQueueUI){
-      ui.remove(c);
-    }
-    deleteQueueUI.clear();
-  }
 }
