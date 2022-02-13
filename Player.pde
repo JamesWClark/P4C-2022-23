@@ -6,7 +6,27 @@ class Player extends AbstractSprite {
     super(x, y, w, h, col);
     moveKeys = new boolean[5];
   }
+  
+  int getXSpeed(){
+   return xspeed; 
+  }
+  
+  int getYSpeed(){
+   return yspeed; 
+  }
+  
+  void setXSpeed(int xspeed){
+    this.xspeed = xspeed; 
+  }
+  
+  void setYSpeed(int yspeed){
+    this.yspeed = yspeed; 
+  }
+  
 
+ void collision(Sprite other){
+     
+   }
 
   void render(){
    //player

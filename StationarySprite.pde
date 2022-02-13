@@ -6,6 +6,27 @@ class StationarySprite extends AbstractSprite {
     
   }
   
+  void collision(Sprite other){
+     
+   }
+  
+  int getXSpeed(){
+   return xspeed; 
+  }
+  
+  int getYSpeed(){
+   return yspeed; 
+  }
+  
+    void setXSpeed(int xspeed){
+    this.xspeed = xspeed; 
+  }
+  
+  void setYSpeed(int yspeed){
+    this.yspeed = yspeed; 
+  }
+  
+  
   void move(){
     
   }

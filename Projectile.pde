@@ -5,6 +5,27 @@ class Projectile extends AbstractSprite {
   
   double theta, vx, vy;
   
+  
+  int getXSpeed(){
+   return xspeed; 
+  }
+  
+  int getYSpeed(){
+   return yspeed; 
+  }
+  
+    void setXSpeed(int xspeed){
+    this.xspeed = xspeed; 
+  }
+  
+  void setYSpeed(int yspeed){
+    this.yspeed = yspeed; 
+  }
+  
+ void collision(Sprite other){
+     
+   }
+  
   public Projectile(int x, int y, int finalX, int finalY, int w, int h, color col){
    super(x, y, w, h, col); 
    this.finalX = finalX; //mouseX at fire
