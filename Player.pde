@@ -1,10 +1,14 @@
 class Player extends AbstractSprite {
-  boolean[] moveKeys;
+  boolean[] moveKeys = new boolean[5];
+
   int speed = 3;
   
+  Player(int x, int y) {
+    super(x, y, 50, 50);
+  }
+  
   Player(int x, int y, int w, int h, color col) {
-    super(x, y, w, h, col);
-    moveKeys = new boolean[5];
+    super(x, y, w, h, col);  
   }
 
 
@@ -72,25 +76,25 @@ class Player extends AbstractSprite {
   boolean canMove(String direction){
     switch(direction){
       case "up":
-        if(this.getY() <= 0){
+        if(this.y <= 0){
           game.lvlManager.changeLevels(direction);
           return false;
         }
         break;
       case "down":
-        if(this.getY() >= height){
+        if(this.y >= height){
           game.lvlManager.changeLevels(direction);
           return false;
         }
         break;
       case "left":
-        if(this.getX() <= 0){
+        if(this.x <= 0){
           game.lvlManager.changeLevels(direction);
           return false;
         }
         break;
       case "right":
-        if(this.getX() >= width){
+        if(this.x >= width){
           game.lvlManager.changeLevels(direction);
           return false;
         }

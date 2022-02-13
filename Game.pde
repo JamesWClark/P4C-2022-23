@@ -2,11 +2,9 @@ import java.util.*;
 
 class Game {
   
-  ArrayList<Sprite> deleteQueue = new ArrayList<Sprite>();
-  ArrayList<Sprite> sprites = new ArrayList<Sprite>();
   ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
-  //creates a delete queue for the UI
   ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
+  
   PImage BG;
   Player player;
   boolean paused = false; 
@@ -30,16 +28,14 @@ class Game {
     imageMode(CENTER);
   }
   
-  void spawn(Sprite sprite){
-    sprites.add(sprite);
-  }
+
   
   void levelLoad(){
     //clears sprites to make room for new level sprites
     if(sprites.size() > 0){
      try{
-       ArrayList<Sprite> sprites = new ArrayList<Sprite>(this.sprites);
-       for(Sprite s: sprites){
+       ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>(this.sprites);
+       for(AbstractSprite s: sprites){
          pendDelete(s);
        }
        this.sprites = sprites;
@@ -55,8 +51,6 @@ class Game {
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
     
-    //why is this here?
-    Stats stats = new Stats(); 
     ammo = new Ammo(10); 
     
     
@@ -119,9 +113,7 @@ class Game {
       }
     }
   }
-  
 
-  
   //creates pause menu if whenever checkPause() is true
   void pauseMenu(boolean p){
     if(p){
@@ -135,72 +127,12 @@ class Game {
       text("Enemies Killed: " + Stats.enemiesKilled, 4*width/5, height/3);
     }
   }
-
-  void killEnemies(){
-    int i = 0;
-    // loop through sprite array
-    while(i < sprites.size()) {
-      // if the sprite is a Projectile
-      if(sprites.get(i) instanceof Projectile){
-        // loop through the sprite array again
-        for(int j = 0; j < game.sprites.size(); j++){
-          // check if there's an enemy colliding with the projectile
-          if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
-            // updates enemies killed in current level
-            lvlManager.currentLvl.iterateEnems(1);
-            
-            // add the sprite to the delete queue
-            pendDelete(sprites.get(j));
-            pendDelete(sprites.get(i));
-            game.ammo.addAmmo(3); 
-            Stats.enemiesKilled++; 
-          }
-        }
-      }
-      if(sprites.get(i) instanceof Player){
-        // loop through the sprite array again
-        for(int j = 0; j < game.sprites.size(); j++){
-          // check if there's an enemy colliding with the player
-          if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
-            // updates enemies killed in current level
-            lvlManager.currentLvl.iterateEnems(1);
-            
-            // add the sprite to the delete queue
-            pendDelete(sprites.get(j));
-            hearts.loseHeart();
-          }
-        }
-      }
-      i++;
-    }
-  }
   
-  void removeProjectiles(){
-    for(Sprite s: sprites) {
-      if(s instanceof Projectile){
-        //the second Y and X numbers are the size of the play window
-        //will handle larger/smaller windows universal later
-        if(s.getY() <= 0 || s.getY() >= height  || s.getX() <= 0 || s.getX() >= width){
-          pendDelete(s);
-        }
-      }
-    }
-  }
-  
-  void pendDelete(Sprite s){
-    deleteQueue.add(s);
-  }
   //creates a pendDelete for the UI components
   void pendDeleteUI(UIComponent c){
     deleteQueueUI.add(c);
   }  
-  
-  void delete(){
-    for(Sprite s: deleteQueue){
-      sprites.remove(s);
-    }
-    deleteQueue.clear();
-  }
+
   //allows the UI to be deleted
   void deleteUI(){
     for(UIComponent c: deleteQueueUI){
