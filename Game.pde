@@ -53,12 +53,7 @@ class Game {
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     sprites.add(player); 
     
-<<<<<<< HEAD
-    //Stats stats = new Stats(); 
-=======
     //why is this here?
-    Stats stats = new Stats(); 
->>>>>>> d433824c314272343ce716b4c23056c51efea3ef
     ammo = new Ammo(10); 
     
     
@@ -124,7 +119,7 @@ class Game {
   
 
   
-  //creates pause menu if whenever checkPause() is true
+  //creates pause menu whenever checkPause() is true
   void pauseMenu(boolean p){
     if(p){
       fill(225, 0, 0);
@@ -155,7 +150,7 @@ class Game {
             pendDelete(sprites.get(j));
             pendDelete(sprites.get(i));
             game.ammo.addAmmo(3); 
-            statistics.enemiesKilled++; 
+            Stats.enemiesKilled++; 
           }
         }
       }

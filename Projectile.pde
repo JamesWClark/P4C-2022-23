@@ -18,7 +18,7 @@ class Projectile extends AbstractSprite {
    run = (double)(finalX - x);
    
    degree = (10 / (Math.abs(rise) + Math.abs(run)));
-   game.statistics.shotsFired++;
+   Stats.shotsFired++;
    
   }
   
