@@ -11,6 +11,7 @@ abstract class AbstractSprite implements Sprite {
   int getY(){return y;}
   int getW(){return w;}
   int getH(){return h;}
+  int getTeam() {return team;}
   PImage getImage(){return sprite;}
   
   AbstractSprite() { }

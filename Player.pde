@@ -4,6 +4,7 @@ class Player extends AbstractSprite {
   
   Player(int x, int y, int w, int h, color col) {
     super(x, y, w, h, col);
+    super.team = 2;
     moveKeys = new boolean[5];
   }
 
@@ -133,7 +134,7 @@ class Player extends AbstractSprite {
   }
   
   void fire(){
-   Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100));
+   Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100), this);
    game.spawn(bullet);
  }
 }

@@ -9,6 +9,7 @@ void setup() {
 void draw() {
   game.play();
   cursor(CROSS); 
+  game.checkEnemy(); 
 }
 
 void keyPressed() {

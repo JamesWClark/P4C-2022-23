@@ -74,6 +74,7 @@ class Game {
     lvlManager.addSymbols();
     
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    
     sprites.add(player); 
     
     hearts = new Hearts(3);
@@ -112,7 +113,27 @@ class Game {
       }
     }
   }
+   long wait = 1000; 
+   long mark = 0; 
   
+  void checkEnemy()
+ {
+   
+
+   
+   if(millis() - mark > wait) {
+   mark = millis(); 
+   for(int i = 0; i < sprites.size(); i++){
+       if(sprites.get(i) instanceof Jim) {
+         Jim jim = (Jim)sprites.get(i);
+         jim.fire(); 
+       }
+     }
+ }
+   
+ }
+ 
+ 
   //creates pause menu if whenever checkPause() is true
   void pauseMenu(boolean p){
     if(p){
@@ -146,6 +167,14 @@ class Game {
             pendDelete(sprites.get(i));
             game.ammo.addAmmo(3); 
             Stats.enemiesKilled++; 
+          }
+          if(sprites.get(j) instanceof Player && sprites.get(i).collide(sprites.get(j))){
+            // updates enemies killed in current level
+            lvlManager.currentLvl.iterateEnems(1);
+            
+            // add the sprite to the delete queue
+            hearts.loseHeart();
+            pendDelete(sprites.get(i)); 
           }
         }
       }
