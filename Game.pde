@@ -63,4 +63,18 @@ class Game {
   void keyUp() {
     this.player.setMovement(key, keyCode, false);
   }
+  
+  long wait = 1000; 
+  long mark = 0; 
+  
+  void checkEnemy(){
+    if(millis() - mark > wait) {
+      for(int i = 0; i < sprites.alive.size(); i++){
+        if(sprites.alive.get(i) instanceof Jim) {
+        Jim jim = (Jim)sprites.alive.get(i);
+        jim.fire(); 
+        }
+    }}
+  } 
+  
 }

@@ -13,6 +13,9 @@ abstract class AbstractSprite implements Sprite {
   color col = color(255);
   PImage sprite = loadImage("assets/ufo.png");  // default
   
+  int getTeam() {return team;}
+  
+  
   AbstractSprite() { }
   
   AbstractSprite(int x, int y) {
