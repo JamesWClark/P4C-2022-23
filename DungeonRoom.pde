@@ -5,8 +5,9 @@ class DungeonRoom implements SpriteObserver {
   color col = color(0, 250, 0);
   PFont difficultyIndicator; //loadFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf");
   
-  AbstractSprite enems[] = new Jim[0];
 
+  AbstractSprite enems[] = new AbstractSprite[0];
+  
   DungeonRoom(int lvlX, int lvlY){
     this.lvlX = lvlX;
     this.lvlY = lvlY;
@@ -22,11 +23,30 @@ class DungeonRoom implements SpriteObserver {
   }
   
   void updateLvl(){
-    enems = new AbstractSprite[constrain(seed - enemsKilled, 0, seed)];
-    for(int i = 0; i < enems.length; i++) {
-      Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
-      enems[i] = bob;
+    enems = new AbstractSprite[seed - enemsKilled];
+    for(int i = 0; i < enems.length; i++){
+      if(i % 4 == 0){
+        ArmorBoi e = new ArmorBoi(generateRandSpawnX(), generateRandSpawnY());
+        enems[i] = e;
+      } else if(i % 3 == 0){
+        Jim e = new Jim(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
+        enems[i] = e;
+      } else if(i % 2 == 0){
+        Zombie e = new Zombie(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
+        enems[i] = e;
+      }else{
+        Bob e = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
+        enems[i] = e;
+      }
     }
+  }
+  // enemies kept spawning on the player, so I changed the random spawn position 
+  // to be within bounds that could not be on top of a player in any doorway (i.e. center-ish of the screen)
+  int generateRandSpawnX(){
+    return (int)(random(width/3, width/1.5));
+  }
+  int generateRandSpawnY(){
+    return (int)(random(height/3, height/1.5));
   }
   
   void observeDeath(AbstractSprite sprite) {
@@ -42,6 +62,12 @@ class DungeonRoom implements SpriteObserver {
     textAlign(CENTER);
     textFont(difficultyIndicator);
     text(seed, width/2, height/2 + 80); 
+    //this is just here to show the area where enemies can spawn
+    /*
+    rectMode(CORNERS);
+    rect(width/3, height/3, width/1.5, height/1.5);
+    rectMode(CENTER);
+    */
     pop();
   }
 }

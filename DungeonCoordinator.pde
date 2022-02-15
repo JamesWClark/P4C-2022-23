@@ -22,33 +22,10 @@ class DungeonCoordinator {
   void levelLoad(){
     this.addSymbols();    
     
-    //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
-    if(this.currentLvl.enems.length > 0){
-      for(int x = 0; x < this.currentLvl.enems.length; x++){
-        //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-        switch(x) {
-          case 0:
-          case 1:
-            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));        
-            break;
-          case 2:
-            game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-            break;
-          case 3:
-            game.spawn(new ArmorBoi(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y));
-            break;
-          case 4:
-            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-            break;
-          case 5:
-            game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-            break;
-          default:
-            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-            break;
-        }
-      }   
-    }
+    //spawns in enemies based on currentlevel enemy count 
+    for(int i = 0; i < this.currentLvl.enems.length; i++){
+      game.spawn(currentLvl.enems[i]);
+    } 
   }
 
   void changeLevels(String direction) {

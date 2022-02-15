@@ -1,4 +1,5 @@
 class Projectile extends AbstractSprite {
+
   
   int finalX, finalY, projectileSpeed = 30;
   double rise, run, slope, degree;
