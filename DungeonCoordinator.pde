@@ -28,7 +28,7 @@ class DungeonCoordinator {
         }
         game.sprites.alive = sprites;
       } catch (NullPointerException e){
-        e.printStackTrace();
+      //  e.printStackTrace();
       }      
     }
     
@@ -46,7 +46,7 @@ class DungeonCoordinator {
           game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
         }
       } catch (NullPointerException e) {
-        e.printStackTrace();
+       // e.printStackTrace();
       }    
     }
   }
