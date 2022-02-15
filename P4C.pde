@@ -7,6 +7,8 @@ void setup() {
 
 void draw() {
   game.play();
+  println("Alive: " + game.sprites.alive.size());
+  println("Dead: " + game.sprites.dead.size());
 }
 
 void keyPressed() {
