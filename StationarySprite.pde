@@ -1,8 +1,8 @@
-class StationarySprite implements UIComponent {
+class LevelGate implements UIComponent {
   int x, y;
   PImage sprite;
   
-  StationarySprite(int x, int y, String path){
+  LevelGate(int x, int y, String path){
     this.x = x;
     this.y = y;
     sprite = loadImage(path);

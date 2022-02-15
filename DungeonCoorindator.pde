@@ -1,17 +1,21 @@
-class LevelManager {
+class DungeonCoordinator {
   
   int playerLevelX = 0, 
       playerLevelY = 0;
   
-  int symbolIndexList[] = new int[4]; // what is a symboL?
-  ArrayList<Level> lvls = new ArrayList<Level>();
-  Level currentLvl;
-  Level adjacentLvls[] = new Level[4];
+  int symbolIndexList[] = new int[4];
+  ArrayList<DungeonRoom> lvls = new ArrayList<DungeonRoom>();
+  DungeonRoom currentLvl;
+  DungeonRoom adjacentLvls[] = new DungeonRoom[4];
 
-  LevelManager() {
-    currentLvl = new Level(0, 0);
+  DungeonCoordinator() {
+    currentLvl = new DungeonRoom(0, 0);
     currentLvl.unlocked = true;
     lvls.add(currentLvl);
+  }
+  
+  void coordinate() {
+    currentLvl.decorateLvl();
   }
 
   void changeLevels(String direction) {
@@ -52,7 +56,7 @@ class LevelManager {
       currentLvl = lvls.get(originalIndex);
       currentLvl.updateLvl();
     } else{
-      currentLvl = new Level(playerLevelX, playerLevelY);
+      currentLvl = new DungeonRoom(playerLevelX, playerLevelY);
       lvls.add(currentLvl);
     }
       
@@ -143,19 +147,19 @@ class LevelManager {
   void spawnSymbols(int i, String name){
     switch(i){
       case 0:
-       game.ui.activate(new StationarySprite(width/2 - 25, 15, "assets/" + name + ".png"));
+       game.ui.activate(new LevelGate(width/2 - 25, 15, "assets/" + name + ".png"));
        // symbolIndexList[0] = game.sprites.alive.size() - 1;
        break;
        case 1:
-       game.ui.activate(new StationarySprite(width/2 - 25, height - 65, "assets/" + name + ".png"));
+       game.ui.activate(new LevelGate(width/2 - 25, height - 65, "assets/" + name + ".png"));
        // symbolIndexList[1] = game.sprites.alive.size() - 1;
        break;
        case 2:
-       game.ui.activate(new StationarySprite(15, height/2, "assets/" + name + ".png"));
+       game.ui.activate(new LevelGate(15, height/2, "assets/" + name + ".png"));
        // symbolIndexList[2] = game.sprites.alive.size() - 1;
        break;
        case 3:
-       game.ui.activate(new StationarySprite(width - 65, height/2, "assets/" + name + ".png"));
+       game.ui.activate(new LevelGate(width - 65, height/2, "assets/" + name + ".png"));
        // symbolIndexList[3] = game.sprites.alive.size() - 1;
        break;
     }

@@ -43,7 +43,7 @@ abstract class AbstractSprite implements Sprite {
   abstract void move();
   
   void render() {
-    image(sprite,x,y);
+    image(sprite, x, y);
   }
   
   /**

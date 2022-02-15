@@ -3,13 +3,17 @@ class Player extends AbstractSprite {
   boolean[] moveKeys = new boolean[5];
   int speed = 3;
   
-  Player(int x, int y) {
-    super(x, y, 50, 50);
-    team = 0;
-  }
+  //UI
+  Hearts hearts = new Hearts(3);
+  Ammo ammo = new Ammo(10); 
+  
+  //Stats
+  Stats statistics;
   
   Player(int x, int y, int w, int h, color col) {
     super(x, y, w, h, col);  
+    game.hud(ammo); 
+    game.hud(hearts);
     team = 0;
   }
 
@@ -79,25 +83,25 @@ class Player extends AbstractSprite {
     switch(direction){
       case "up":
         if(this.y <= 0){
-          game.lvlManager.changeLevels(direction);
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "down":
         if(this.y >= height){
-          game.lvlManager.changeLevels(direction);
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "left":
         if(this.x <= 0){
-          game.lvlManager.changeLevels(direction);
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "right":
         if(this.x >= width){
-          game.lvlManager.changeLevels(direction);
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
@@ -144,7 +148,7 @@ class Player extends AbstractSprite {
   
   @Override
   void handleCollision(AbstractSprite other) {
-    game.hearts.loseHeart();
+    this.hearts.loseHeart();
   }
   
   void fire(){

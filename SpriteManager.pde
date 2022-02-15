@@ -44,14 +44,14 @@ class SpriteManager {
         AbstractSprite b = alive.get(j);
         if(a.team != b.team && a.collide(b)) {
           // updates enemies killed in current level
-          game.lvlManager.currentLvl.iterateEnems(1);
+          game.dungeon.currentLvl.iterateEnems(1);
           
           // add the sprite to the delete queue
           //pendDelete(a);
           //pendDelete(b);
           a.handleCollision(b);
           b.handleCollision(a);
-          game.ammo.addAmmo(3); 
+          game.player.ammo.addAmmo(3); 
           Stats.enemiesKilled++;           
         }
       }

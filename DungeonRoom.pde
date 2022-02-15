@@ -1,4 +1,4 @@
-class Level {
+class DungeonRoom {
   int seed = 0, lvlX, lvlY, enemsKilled = 0;
   boolean unlocked = false;
   color col = color(0, 250, 0);
@@ -6,7 +6,7 @@ class Level {
   
   AbstractSprite enems[] = new Bob[0];
   
-   Level(int lvlX, int lvlY){
+   DungeonRoom(int lvlX, int lvlY){
     this.lvlX = lvlX;
     this.lvlY = lvlY;
     
@@ -35,7 +35,7 @@ class Level {
   void iterateEnems(int iterate){
     enemsKilled += iterate;
     if(enemsKilled == enems.length){
-      game.lvlManager.updateSymbols();
+      game.dungeon.updateSymbols();
     }
   }
   
