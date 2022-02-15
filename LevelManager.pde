@@ -1,11 +1,12 @@
 class LevelManager {
-  int playerLevelX = 0, playerLevelY = 0;
   
-  Level currentLvl;
-  Level adjacentLvls[] = new Level[4];
+  int playerLevelX = 0, 
+      playerLevelY = 0;
+  
   int symbolIndexList[] = new int[4]; // what is a symboL?
   ArrayList<Level> lvls = new ArrayList<Level>();
-  
+  Level currentLvl;
+  Level adjacentLvls[] = new Level[4];
 
   LevelManager() {
     currentLvl = new Level(0, 0);
@@ -129,12 +130,12 @@ class LevelManager {
   
   void updateSymbols(){
     for(int i = 0; i < symbolIndexList.length; i++){
-      game.sprites.pendDelete(game.sprites.alive.get(i));
+      // game.sprites.pendDelete(game.sprites.alive.get(i));
       if(adjacentLvls[i] == null || !(adjacentLvls[i].unlocked)){
-         spawnSymbols(i, "danger");
-       } else {
-         spawnSymbols(i, "unlocked");
-       }
+        spawnSymbols(i, "danger");
+      } else {
+        spawnSymbols(i, "unlocked");
+      }
     }
   }
   
@@ -142,20 +143,20 @@ class LevelManager {
   void spawnSymbols(int i, String name){
     switch(i){
       case 0:
-       game.sprites.spawn(new StationarySprite(width/2 - 25, 15, "assets/" + name + ".png"));
-       symbolIndexList[0] = game.sprites.alive.size() - 1;
+       game.ui.activate(new StationarySprite(width/2 - 25, 15, "assets/" + name + ".png"));
+       // symbolIndexList[0] = game.sprites.alive.size() - 1;
        break;
        case 1:
-       game.sprites.spawn(new StationarySprite(width/2 - 25, height - 65, "assets/" + name + ".png"));
-       symbolIndexList[1] = game.sprites.alive.size() - 1;
+       game.ui.activate(new StationarySprite(width/2 - 25, height - 65, "assets/" + name + ".png"));
+       // symbolIndexList[1] = game.sprites.alive.size() - 1;
        break;
        case 2:
-       game.sprites.spawn(new StationarySprite(15, height/2, "assets/" + name + ".png"));
-       symbolIndexList[2] = game.sprites.alive.size() - 1;
+       game.ui.activate(new StationarySprite(15, height/2, "assets/" + name + ".png"));
+       // symbolIndexList[2] = game.sprites.alive.size() - 1;
        break;
        case 3:
-       game.sprites.spawn(new StationarySprite(width - 65, height/2, "assets/" + name + ".png"));
-       symbolIndexList[3] = game.sprites.alive.size() - 1;
+       game.ui.activate(new StationarySprite(width - 65, height/2, "assets/" + name + ".png"));
+       // symbolIndexList[3] = game.sprites.alive.size() - 1;
        break;
     }
   }

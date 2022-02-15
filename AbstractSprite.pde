@@ -1,7 +1,13 @@
 abstract class AbstractSprite implements Sprite {
-  int team = 1;
-  int x = 0, y = 0, w, h;
-  int xspeed = 0, yspeed = 0;
+
+  int x = 0, 
+      y = 0, 
+      w = 50, 
+      h = 50,
+      xspeed = 0, 
+      yspeed = 0,
+      team = 1;
+      
   color col = color(255);
   PImage sprite = loadImage("assets/ufo.png");  // default
   
@@ -40,10 +46,18 @@ abstract class AbstractSprite implements Sprite {
     image(sprite,x,y);
   }
   
+  /**
+   * A collision was detected between two sprites of differing teams
+   * @param other - the sprite this sprite has collided with, not necessarily required in super class
+   */
+  @SuppressWarnings("unused")
   void handleCollision(AbstractSprite other) {
     game.destroy(this);
   }
   
+  /**
+   *
+   */
   boolean collide(AbstractSprite spr){
     boolean sprInTL = (spr.x + spr.w/2 > x-w/2 && spr.y + spr.h/2 > y-h/2); 
     boolean sprInTR = (spr.x - spr.w/2 < x+w/2 && spr.y + spr.h/2 > y-h/2); 

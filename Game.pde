@@ -123,5 +123,12 @@ class Game {
     }
   }
   
+  void keyDown() {
+    this.player.setMovement(key, keyCode, true);
+    this.checkPause(key);    
+  }
 
+  void keyUp() {
+    this.player.setMovement(key, keyCode, false);
+  }
 }
