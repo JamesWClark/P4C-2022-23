@@ -1,10 +1,10 @@
 class SpriteManager {
 
-  ArrayList<AbstractSprite> deleteQueue = new ArrayList<AbstractSprite>();
-  ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>();
+  ArrayList<AbstractSprite> dead = new ArrayList<AbstractSprite>();
+  ArrayList<AbstractSprite> alive = new ArrayList<AbstractSprite>();
 
   void manage() {
-    for(Sprite s: sprites){
+    for(Sprite s: alive){
       s.move();
       s.render();
     } 
@@ -13,8 +13,8 @@ class SpriteManager {
     delete();
   }
   
-void removeProjectiles(){
-    for(AbstractSprite s: sprites) {
+  void removeProjectiles(){
+    for(AbstractSprite s: alive) {
       if(s instanceof Projectile){
         //the second Y and X numbers are the size of the play window
         //will handle larger/smaller windows universal later
@@ -26,62 +26,39 @@ void removeProjectiles(){
   }
   
   void delete(){
-    for(Sprite s: deleteQueue){
-      sprites.remove(s);
+    for(Sprite s: dead){
+      alive.remove(s);
     }
-    deleteQueue.clear();
+    dead.clear();
   }
   
   void pendDelete(AbstractSprite s){
-    deleteQueue.add(s);
+    dead.add(s);
   }
   
   void killEnemies(){
-    int i = 0;
     // loop through sprite array
-    while(i < sprites.size()) {
-      // if the sprite is a Projectile
-      if(sprites.get(i) instanceof Projectile){
-        // loop through the sprite array again
-        for(int j = 0; j < game.sprites.size(); j++){
-          // check if there's an enemy colliding with the projectile
-          if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
-            // updates enemies killed in current level
-            lvlManager.currentLvl.iterateEnems(1);
-            
-            // add the sprite to the delete queue
-            pendDelete(sprites.get(j));
-            pendDelete(sprites.get(i));
-            game.ammo.addAmmo(3); 
-            Stats.enemiesKilled++; 
-          }
+    for(int i = 0; i < alive.size(); i++) {
+      for(int j = i+1; j < alive.size(); j++) {
+        AbstractSprite a = alive.get(i);
+        AbstractSprite b = alive.get(j);
+        if(a.team != b.team && a.collide(b)) {
+          // updates enemies killed in current level
+          game.lvlManager.currentLvl.iterateEnems(1);
+          
+          // add the sprite to the delete queue
+          //pendDelete(a);
+          //pendDelete(b);
+          a.handleCollision(b);
+          b.handleCollision(a);
+          game.ammo.addAmmo(3); 
+          Stats.enemiesKilled++;           
         }
       }
-      if(sprites.get(i) instanceof Player){
-        // loop through the sprite array again
-        for(int j = 0; j < game.sprites.size(); j++){
-          // check if there's an enemy colliding with the player
-          if(sprites.get(j) instanceof Bob && sprites.get(i).collide(sprites.get(j))){
-            // updates enemies killed in current level
-            lvlManager.currentLvl.iterateEnems(1);
-            
-            // add the sprite to the delete queue
-            pendDelete(sprites.get(j));
-            hearts.loseHeart();
-          }
-        }
-      }
-      i++;
     }
   }
   
   void spawn(AbstractSprite sprite){
-    sprites.add(sprite);
+    alive.add(sprite);
   }
-  
-  
-  
-
-  
-
 }

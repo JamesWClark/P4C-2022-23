@@ -40,6 +40,10 @@ abstract class AbstractSprite implements Sprite {
     image(sprite,x,y);
   }
   
+  void handleCollision(AbstractSprite other) {
+    game.destroy(this);
+  }
+  
   boolean collide(AbstractSprite spr){
     boolean sprInTL = (spr.x + spr.w/2 > x-w/2 && spr.y + spr.h/2 > y-h/2); 
     boolean sprInTR = (spr.x - spr.w/2 < x+w/2 && spr.y + spr.h/2 > y-h/2); 

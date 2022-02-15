@@ -7,6 +7,7 @@ class Projectile extends AbstractSprite {
   
   public Projectile(int x, int y, int finalX, int finalY, int w, int h, color col){
    super(x, y, w, h, col); 
+   team = 0;
    this.finalX = finalX; //mouseX at fire
    this.finalY = finalY; //mouseY at fire
    rise = finalY - y;

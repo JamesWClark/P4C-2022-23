@@ -1,14 +1,16 @@
 class Player extends AbstractSprite {
+  
   boolean[] moveKeys = new boolean[5];
-
   int speed = 3;
   
   Player(int x, int y) {
     super(x, y, 50, 50);
+    team = 0;
   }
   
   Player(int x, int y, int w, int h, color col) {
     super(x, y, w, h, col);  
+    team = 0;
   }
 
 
@@ -106,16 +108,20 @@ class Player extends AbstractSprite {
   void setMovement(char k, int kc, boolean b) {
       switch (k) {
         //main movement keys
-        case 'w': case 'W':
+        case 'w': 
+        case 'W':
           moveKeys[0] = b;
           break;
-        case 'a': case 'A':
+        case 'a': 
+        case 'A':
           moveKeys[1] = b;
           break;
-        case 's': case 'S':
+        case 's': 
+        case 'S':
           moveKeys[2] = b;
           break;
-        case 'd': case 'D':
+        case 'd': 
+        case 'D':
           moveKeys[3] = b;
           break;   
           
@@ -123,7 +129,7 @@ class Player extends AbstractSprite {
           //fire
         case ' ':
           if(b == false){
-           fire();
+            fire();
           }
           break;
       }
@@ -136,8 +142,13 @@ class Player extends AbstractSprite {
     }
   }
   
+  @Override
+  void handleCollision(AbstractSprite other) {
+    game.hearts.loseHeart();
+  }
+  
   void fire(){
    Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100));
-   game.spawn(bullet);
+   game.sprites.spawn(bullet);
  }
 }

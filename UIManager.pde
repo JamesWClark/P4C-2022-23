@@ -1,5 +1,5 @@
 class UIManager {
-  ArrayList<UIComponent> ui = new ArrayList<UIComponent>();
+  ArrayList<UIComponent> hud = new ArrayList<UIComponent>();
   ArrayList<UIComponent> deleteQueueUI = new ArrayList<UIComponent>();
   
   //creates a pendDelete for the UI components
@@ -10,13 +10,13 @@ class UIManager {
   //allows the UI to be deleted
   void deleteUI(){
     for(UIComponent c: deleteQueueUI){
-      ui.remove(c);
+      hud.remove(c);
     }
     deleteQueueUI.clear();
   }
   
   void manage() {
-    for(UIComponent c: ui){
+    for(UIComponent c: hud){
       c.render();
     } 
     deleteUI();
