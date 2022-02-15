@@ -5,13 +5,34 @@ class Projectile extends AbstractSprite {
   
   double theta, vx, vy;
   
+  
+  int getXSpeed(){
+   return xspeed; 
+  }
+  
+  int getYSpeed(){
+   return yspeed; 
+  }
+  
+    void setXSpeed(int xspeed){
+    this.xspeed = xspeed; 
+  }
+  
+  void setYSpeed(int yspeed){
+    this.yspeed = yspeed; 
+  }
+  
+ void collision(Sprite other){
+     
+   }
+  
   public Projectile(int x, int y, int finalX, int finalY, int w, int h, color col){
    super(x, y, w, h, col); 
    this.finalX = finalX;
    this.finalY = finalY;
    rise = (double)(finalY - y)/20;
    run = (double)(finalX - x)/20;
-   double speed = 1;
+   double speed = 25;
    degree = (speed / (Math.abs(rise) + Math.abs(run)));
    println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
    rise = (double)(finalY - y);

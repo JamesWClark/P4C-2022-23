@@ -30,4 +30,10 @@ class Drops extends AbstractSprite{
   
   void move(){
   }
+  void collision(Sprite other){
+  }
+  void setXSpeed(int xspeed){
+  }
+  void setYSpeed(int yspeed){
+  }
 }
