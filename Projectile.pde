@@ -47,7 +47,7 @@ class Projectile extends AbstractSprite {
    run = (double)(finalX - x)/20;
    double speed = 25;
    degree = (speed / (Math.abs(rise) + Math.abs(run)));
-   println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
+//   println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
    rise = (double)(finalY - y);
    run = (double)(finalX - x);
    
