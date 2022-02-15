@@ -1,4 +1,5 @@
 class DungeonRoom {
+  
   int seed = 0, lvlX, lvlY, enemsKilled = 0;
   boolean unlocked = false;
   color col = color(0, 250, 0);
@@ -20,11 +21,6 @@ class DungeonRoom {
   }
   
   void updateLvl(){
-    //initializes level enemies based off seed 5
-    
-    //something breaks with "Array index out of bound: -1" I cannot replicate it consistently
-    //I'm guessing enemsKilled can be more than seed and break it
-    println("Seed: " + seed + " enemsKilled: :" + enemsKilled);
     enems = new Bob[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
       Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);

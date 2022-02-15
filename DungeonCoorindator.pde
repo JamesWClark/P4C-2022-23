@@ -17,6 +17,39 @@ class DungeonCoordinator {
   void coordinate() {
     currentLvl.decorateLvl();
   }
+  
+  void levelLoad(){
+    //clears sprites to make room for new level sprites
+    if(game.sprites.alive.size() > 0){
+      try{
+        ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>(game.sprites.alive);
+        for(AbstractSprite s: game.sprites.alive){
+          game.sprites.pendDelete(s);
+        }
+        game.sprites.alive = sprites;
+      } catch (NullPointerException e){
+        e.printStackTrace();
+      }      
+    }
+    
+    this.addSymbols();
+    
+    // TODO: DELETE
+    // game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    // game.spawn(game.player); 
+    
+    
+    //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
+    if(this.currentLvl.enems.length > 0){
+      try{
+        for(int x = 0; x < this.currentLvl.enems.length; x++){
+          game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+        }
+      } catch (NullPointerException e) {
+        e.printStackTrace();
+      }    
+    }
+  }
 
   void changeLevels(String direction) {
     //allows the player to move to a new level if they've killed every enemy in the current level
@@ -65,7 +98,7 @@ class DungeonCoordinator {
     int playerY = game.player.y;
     
     //load new level
-    game.levelLoad();
+    levelLoad();
       
     //change location of player to "transition" between levels
     switch(direction){
@@ -134,7 +167,6 @@ class DungeonCoordinator {
   
   void updateSymbols(){
     for(int i = 0; i < symbolIndexList.length; i++){
-      // game.sprites.pendDelete(game.sprites.alive.get(i));
       if(adjacentLvls[i] == null || !(adjacentLvls[i].unlocked)){
         spawnSymbols(i, "danger");
       } else {
@@ -146,22 +178,10 @@ class DungeonCoordinator {
   //method to assist addSymbols
   void spawnSymbols(int i, String name){
     switch(i){
-      case 0:
-       game.ui.activate(new LevelGate(width/2 - 25, 15, "assets/" + name + ".png"));
-       // symbolIndexList[0] = game.sprites.alive.size() - 1;
-       break;
-       case 1:
-       game.ui.activate(new LevelGate(width/2 - 25, height - 65, "assets/" + name + ".png"));
-       // symbolIndexList[1] = game.sprites.alive.size() - 1;
-       break;
-       case 2:
-       game.ui.activate(new LevelGate(15, height/2, "assets/" + name + ".png"));
-       // symbolIndexList[2] = game.sprites.alive.size() - 1;
-       break;
-       case 3:
-       game.ui.activate(new LevelGate(width - 65, height/2, "assets/" + name + ".png"));
-       // symbolIndexList[3] = game.sprites.alive.size() - 1;
-       break;
+      case 0: game.hud(new LevelGate(width/2 - 25, 15, "assets/" + name + ".png")); break;
+      case 1: game.hud(new LevelGate(width/2 - 25, height - 65, "assets/" + name + ".png")); break;
+      case 2: game.hud(new LevelGate(15, height/2, "assets/" + name + ".png")); break;
+      case 3: game.hud(new LevelGate(width - 65, height/2, "assets/" + name + ".png")); break;
     }
   }
 }

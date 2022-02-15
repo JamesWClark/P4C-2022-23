@@ -2,7 +2,10 @@ import java.util.*;
 
 class Game {
   
+  // treat as public
   Player player;
+  
+  // treat as private
   UIManager ui = new UIManager();
   SpriteManager sprites = new SpriteManager();
   DungeonCoordinator dungeon = new DungeonCoordinator();
@@ -19,52 +22,22 @@ class Game {
     imageMode(CENTER);
   }
   
+  // sprite proxy
   void destroy(AbstractSprite target) {
     this.sprites.pendDelete(target);
   }
   
+  // sprite proxy
   void spawn(AbstractSprite target) {
     this.sprites.spawn(target);
   }
   
+  // ui proxy
   void hud(UIComponent component) {
     this.ui.hud.add(component); 
   }
   
-  void levelLoad(){
-    //clears sprites to make room for new level sprites
-    if(sprites.alive.size() > 0){
-     try{
-       ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>(this.sprites.alive);
-       for(AbstractSprite s: this.sprites.alive){
-         this.sprites.pendDelete(s);
-       }
-       this.sprites.alive = sprites;
-      } catch (NullPointerException e){
-        e.printStackTrace();
-      }      
-    }
-
-    config();
-    
-    dungeon.addSymbols();
-    
-    player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    sprites.alive.add(player); 
-    
-    
-    //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
-    if(dungeon.currentLvl.enems.length > 0){
-      try{
-        for(int x = 0; x < dungeon.currentLvl.enems.length; x++){
-          sprites.spawn(new Bob(dungeon.currentLvl.enems[x].x, dungeon.currentLvl.enems[x].y, dungeon.currentLvl.enems[x].w, dungeon.currentLvl.enems[x].h));
-        }
-      } catch (NullPointerException e) {
-       e.printStackTrace();
-      }    
-    }
-  }
-  
+  // setup
   void load() {
     config();
     dungeon.addSymbols();
@@ -72,8 +45,7 @@ class Game {
     sprites.spawn(player); 
   }
   
-  
-  
+  // draw
   void play() {
     background(BG);
     dungeon.coordinate();
@@ -81,11 +53,13 @@ class Game {
     ui.manage();
   }
   
+  // keyPressed
   void keyDown() {
     this.player.setMovement(key, keyCode, true);
     this.ui.checkPause(key);    
   }
-
+   
+  // keyReleased
   void keyUp() {
     this.player.setMovement(key, keyCode, false);
   }
