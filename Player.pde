@@ -1,10 +1,20 @@
 class Player extends AbstractSprite {
-  boolean[] moveKeys;
+  
+  boolean[] moveKeys = new boolean[5];
   int speed = 3;
   
+  //UI
+  Hearts hearts = new Hearts(3);
+  Ammo ammo = new Ammo(10); 
+  
+  //Stats
+  Stats statistics;
+  
   Player(int x, int y, int w, int h, color col) {
-    super(x, y, w, h, col);
-    moveKeys = new boolean[5];
+    super(x, y, w, h, col);  
+    game.hud(ammo); 
+    game.hud(hearts);
+    team = 0;
   }
   
   int getXSpeed(){
@@ -23,11 +33,6 @@ class Player extends AbstractSprite {
     this.yspeed = yspeed; 
   }
   
-
- void collision(Sprite other){
-     
-   }
-
   void render(){
    //player
    ellipse(x, y, 50, 50);
@@ -92,26 +97,26 @@ class Player extends AbstractSprite {
   boolean canMove(String direction){
     switch(direction){
       case "up":
-        if(this.getY() <= 0){
-          game.lvlManager.changeLevels(direction);
+        if(this.y <= 0){
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "down":
-        if(this.getY() >= height){
-          game.lvlManager.changeLevels(direction);
+        if(this.y >= height){
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "left":
-        if(this.getX() <= 0){
-          game.lvlManager.changeLevels(direction);
+        if(this.x <= 0){
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
       case "right":
-        if(this.getX() >= width){
-          game.lvlManager.changeLevels(direction);
+        if(this.x >= width){
+          game.dungeon.changeLevels(direction);
           return false;
         }
         break;
@@ -122,16 +127,20 @@ class Player extends AbstractSprite {
   void setMovement(char k, int kc, boolean b) {
       switch (k) {
         //main movement keys
-        case 'w': case 'W':
+        case 'w': 
+        case 'W':
           moveKeys[0] = b;
           break;
-        case 'a': case 'A':
+        case 'a': 
+        case 'A':
           moveKeys[1] = b;
           break;
-        case 's': case 'S':
+        case 's': 
+        case 'S':
           moveKeys[2] = b;
           break;
-        case 'd': case 'D':
+        case 'd': 
+        case 'D':
           moveKeys[3] = b;
           break;   
           
@@ -139,7 +148,7 @@ class Player extends AbstractSprite {
           //fire
         case ' ':
           if(b == false){
-           fire();
+            fire();
           }
           break;
       }
@@ -152,8 +161,13 @@ class Player extends AbstractSprite {
     }
   }
   
+  @Override
+  void handleCollision(AbstractSprite other) {
+    this.hearts.loseHeart();
+  }
+  
   void fire(){
    Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100));
-   game.spawn(bullet);
+   game.sprites.spawn(bullet);
  }
 }

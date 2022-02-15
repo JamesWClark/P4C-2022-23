@@ -1,12 +1,10 @@
 import java.lang.Math;
+
 class Bob extends AbstractSprite {
-  
   
   Bob(int x, int y, int w, int h) {
     super(x, y, w, h, "assets/ufo.png");
-    changeSpeed();
-    
-    
+    changeSpeed();    
   }
   
   void changeSpeed(){
@@ -30,7 +28,6 @@ class Bob extends AbstractSprite {
     this.yspeed = yspeed; 
   }
   
-  
   void move() {
     x += xspeed;
     y += yspeed;
@@ -40,19 +37,24 @@ class Bob extends AbstractSprite {
     }
     if(y > height || y < 0){  
       yspeed *= -1;
-   
     }
   }
   
-
+  @Override
+  boolean collide(AbstractSprite other) {
+    if(other instanceof Bob) {
+      collision((Bob)other);
+    }
+    return super.collide(other);
+  }
   
-void collision(Sprite other){
-  int finalXspeed = (abs(xspeed)+abs(other.getXSpeed()))/2;
-  int finalYspeed = (abs(yspeed)+abs(other.getYSpeed()))/2;
+  void collision(Bob other){
+    int finalXspeed = (abs(xspeed)+abs(other.getXSpeed()))/2;
+    int finalYspeed = (abs(yspeed)+abs(other.getYSpeed()))/2;
   
-  if(xspeed < 0 && other.getXSpeed() < 0){
-     setXSpeed(-(finalXspeed));
-     other.setXSpeed(-(finalXspeed));
+    if(xspeed < 0 && other.getXSpeed() < 0){
+      setXSpeed(-(finalXspeed));
+      other.setXSpeed(-(finalXspeed));
     }
     else if(xspeed >0 && other.getXSpeed() > 0){
       setXSpeed(finalXspeed);
@@ -85,8 +87,8 @@ void collision(Sprite other){
     
     
     if(yspeed < 0 && other.getYSpeed() < 0){
-     setXSpeed(-(finalYspeed));
-     other.setYSpeed(-(finalYspeed));
+      setXSpeed(-(finalYspeed));
+      other.setYSpeed(-(finalYspeed));
     }
     else if(yspeed >0 && other.getYSpeed() > 0){
       setYSpeed(finalYspeed);
@@ -116,5 +118,5 @@ void collision(Sprite other){
       setYSpeed(finalYspeed);
       other.setYSpeed(-(finalYspeed));
     }        
- } 
+  } 
 }

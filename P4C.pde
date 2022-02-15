@@ -7,13 +7,12 @@ void setup() {
 
 void draw() {
   game.play();
-  //rect(width - width/10, height - height/10, 75, 75, 28);
 }
 
 void keyPressed() {
-  game.player.setMovement(key, keyCode, true);
-  game.checkPause(key);
+  game.keyDown();
 }
+
 void keyReleased() {
-  game.player.setMovement(key, keyCode, false);
+  game.keyUp();
 }
