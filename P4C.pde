@@ -7,6 +7,7 @@ void setup() {
 
 void draw() {
   game.play();
+  game.checkEnemy(); 
 }
 
 void keyPressed() {
