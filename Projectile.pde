@@ -1,6 +1,6 @@
 class Projectile extends AbstractSprite {
   boolean render = true;
-  int finalX, finalY, projectileSpeed = 30;
+  int finalX, finalY, speed = 25;
   double rise, run, slope, degree;
   
   double theta, vx, vy;
@@ -45,9 +45,8 @@ class Projectile extends AbstractSprite {
    this.finalY = finalY;
    rise = (double)(finalY - y)/20;
    run = (double)(finalX - x)/20;
-   double speed = 25;
    degree = (speed / (Math.abs(rise) + Math.abs(run)));
-   println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
+   //println(degree + " = " + speed + " / (" + Math.abs(rise) + " * " + Math.abs(run) + ")");
    rise = (double)(finalY - y);
    run = (double)(finalX - x);
    

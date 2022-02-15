@@ -5,7 +5,7 @@ class DungeonRoom {
   color col = color(0, 250, 0);
   PFont difficultyIndicator; //loadFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf");
   
-  AbstractSprite enems[] = new Bob[0];
+  AbstractSprite enems[] = new AbstractSprite[0];
   
   DungeonRoom(int lvlX, int lvlY){
     this.lvlX = lvlX;
@@ -21,10 +21,16 @@ class DungeonRoom {
   }
   
   void updateLvl(){
-    enems = new Bob[seed - enemsKilled];
+    enems = new AbstractSprite[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
-      Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
-      enems[i] = bob;
+      if(i % 1 == 0){
+        Zombie z = new Zombie((int)(width/2)+i*50, (int)(height/2)+i*50, 100, 100);
+        enems[i] = z;
+      } else{
+        Bob b = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
+        enems[i] = b;
+      }
+
     }
   }
   
