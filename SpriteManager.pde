@@ -29,7 +29,7 @@ class SpriteManager {
     for(Sprite s: dead){
       alive.remove(s);
     }
-    dead.clear();
+    dead.clear(); // redundant...
   }
   
   void pendDelete(AbstractSprite s){
@@ -46,13 +46,13 @@ class SpriteManager {
           // updates enemies killed in current level
           game.dungeon.currentLvl.iterateEnems(1);
           
-          // add the sprite to the delete queue
-          //pendDelete(a);
-          //pendDelete(b);
+          // assumes a kill has occurred?
+          game.player.ammo.addAmmo(3);
+          Stats.enemiesKilled++;
+          
+          // this technique does not guarantee a kill (maybe a collision or aquisition instead)
           a.handleCollision(b);
           b.handleCollision(a);
-          game.player.ammo.addAmmo(3); 
-          Stats.enemiesKilled++;           
         }
       }
     }

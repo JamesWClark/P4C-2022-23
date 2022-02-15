@@ -35,8 +35,8 @@ class DungeonCoordinator {
     this.addSymbols();
     
     // TODO: DELETE
-    // game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    // game.spawn(game.player); 
+    game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    game.spawn(game.player); 
     
     
     //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions

@@ -7,7 +7,7 @@ class DungeonRoom {
   
   AbstractSprite enems[] = new Bob[0];
   
-   DungeonRoom(int lvlX, int lvlY){
+  DungeonRoom(int lvlX, int lvlY){
     this.lvlX = lvlX;
     this.lvlY = lvlY;
     

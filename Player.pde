@@ -17,7 +17,6 @@ class Player extends AbstractSprite {
     team = 0;
   }
 
-
   void render(){
    //player
    ellipse(x, y, 50, 50);
