@@ -179,10 +179,10 @@ class DungeonCoordinator {
   //method to assist addSymbols
   void spawnSymbols(int i, String name){
     switch(i){
-      case 0: game.hud(new LevelGate(width/2 - 25, 15, "assets/" + name + ".png")); break;
-      case 1: game.hud(new LevelGate(width/2 - 25, height - 65, "assets/" + name + ".png")); break;
-      case 2: game.hud(new LevelGate(15, height/2, "assets/" + name + ".png")); break;
-      case 3: game.hud(new LevelGate(width - 65, height/2, "assets/" + name + ".png")); break;
+      case 0: game.hud(new DungeonGate(width/2 - 25, 15, "assets/" + name + ".png")); break;
+      case 1: game.hud(new DungeonGate(width/2 - 25, height - 65, "assets/" + name + ".png")); break;
+      case 2: game.hud(new DungeonGate(15, height/2, "assets/" + name + ".png")); break;
+      case 3: game.hud(new DungeonGate(width - 65, height/2, "assets/" + name + ".png")); break;
     }
   }
 }
