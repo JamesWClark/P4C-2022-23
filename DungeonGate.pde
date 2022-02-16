@@ -1,8 +1,8 @@
-class LevelGate implements UIComponent {
+class DungeonGate implements UIComponent {
   int x, y;
   PImage sprite;
   
-  LevelGate(int x, int y, String path){
+  DungeonGate(int x, int y, String path) {
     this.x = x;
     this.y = y;
     sprite = loadImage(path);
