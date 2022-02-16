@@ -4,25 +4,17 @@ class SpriteManager {
   ArrayList<AbstractSprite> alive = new ArrayList<AbstractSprite>();
 
   void manage() {
+    moveThePieces();
+    detectCollisions();
+    cleanupTheDead();
+  }
+    
+  void moveThePieces() {
     // standard for loop fixes concurent modification exception in foreach style loop caused by Jim
     for(int i = alive.size() - 1; i >= 0; i--) {
-      AbstractSprite s = alive.get(i);
-      s.move();
-      s.render();
-    } 
-    detectCollisions();
-    removeDead();
-  }
-
-  void removeDead(){
-    for(AbstractSprite s: dead){
-      alive.remove(s);
-    }
-    dead.clear();
-  }
-  
-  void pendDelete(AbstractSprite s){
-    dead.add(s);
+      alive.get(i).move();
+      alive.get(i).render();
+    }  
   }
   
   void detectCollisions(){
@@ -45,5 +37,16 @@ class SpriteManager {
         }
       }
     }
+  }  
+  
+  void cleanupTheDead(){
+    for(AbstractSprite s: dead){
+      alive.remove(s);
+    }
+    dead.clear();
+  }
+  
+  void pendDelete(AbstractSprite s){
+    dead.add(s);
   }
 }
