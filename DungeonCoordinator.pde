@@ -28,7 +28,7 @@ class DungeonCoordinator {
         }
         game.sprites.alive = sprites;
       } catch (NullPointerException e){
-        e.printStackTrace();
+      //  e.printStackTrace();
       }      
     }
     
@@ -43,10 +43,11 @@ class DungeonCoordinator {
     if(this.currentLvl.enems.length > 0){
       try{
         for(int x = 0; x < this.currentLvl.enems.length; x++){
-          game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+          //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+          game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
         }
       } catch (NullPointerException e) {
-        e.printStackTrace();
+       // e.printStackTrace();
       }    
     }
   }
@@ -178,10 +179,10 @@ class DungeonCoordinator {
   //method to assist addSymbols
   void spawnSymbols(int i, String name){
     switch(i){
-      case 0: game.hud(new LevelGate(width/2 - 25, 15, "assets/" + name + ".png")); break;
-      case 1: game.hud(new LevelGate(width/2 - 25, height - 65, "assets/" + name + ".png")); break;
-      case 2: game.hud(new LevelGate(15, height/2, "assets/" + name + ".png")); break;
-      case 3: game.hud(new LevelGate(width - 65, height/2, "assets/" + name + ".png")); break;
+      case 0: game.hud(new DungeonGate(width/2 - 25, 15, "assets/" + name + ".png")); break;
+      case 1: game.hud(new DungeonGate(width/2 - 25, height - 65, "assets/" + name + ".png")); break;
+      case 2: game.hud(new DungeonGate(15, height/2, "assets/" + name + ".png")); break;
+      case 3: game.hud(new DungeonGate(width - 65, height/2, "assets/" + name + ".png")); break;
     }
   }
 }

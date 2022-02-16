@@ -42,10 +42,11 @@ class Bob extends AbstractSprite {
   
   @Override
   boolean collide(AbstractSprite other) {
-    if(other instanceof Bob) {
+    if(super.collide(other)) {
       collision((Bob)other);
+      return true;
     }
-    return super.collide(other);
+    return false;
   }
   
 

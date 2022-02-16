@@ -1,7 +1,7 @@
 Game game = new Game();
 
 void setup() {
-  size(900, 700);
+  size(900, 700, P2D);
   game.load();
 }
 
