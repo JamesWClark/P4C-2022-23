@@ -4,45 +4,34 @@ class SpriteManager {
   ArrayList<AbstractSprite> alive = new ArrayList<AbstractSprite>();
 
   void manage() {
-    for(Sprite s: alive){
+    // standard for loop fixes concurent modification exception in foreach style loop caused by Jim
+    for(int i = alive.size() - 1; i >= 0; i--) {
+      AbstractSprite s = alive.get(i);
       s.move();
       s.render();
     } 
-    removeProjectiles();
-    killEnemies();
-    delete();
+    detectCollisions();
+    removeDead();
   }
-  
-  void removeProjectiles(){
-    for(AbstractSprite s: alive) {
-      if(s instanceof Projectile){
-        //the second Y and X numbers are the size of the play window
-        //will handle larger/smaller windows universal later
-        if(s.y <= 0 || s.y >= height  || s.x <= 0 || s.x >= width){
-          pendDelete(s);
-        }
-      }
-    }
-  }
-  
-  void delete(){
-    for(Sprite s: dead){
+
+  void removeDead(){
+    for(AbstractSprite s: dead){
       alive.remove(s);
     }
-    dead.clear(); // redundant...
+    dead.clear();
   }
   
   void pendDelete(AbstractSprite s){
     dead.add(s);
   }
   
-  void killEnemies(){
-    // loop through sprite array
+  void detectCollisions(){
     for(int i = 0; i < alive.size(); i++) {
       for(int j = i+1; j < alive.size(); j++) {
         AbstractSprite a = alive.get(i);
         AbstractSprite b = alive.get(j);
         if(a.team != b.team && a.collide(b)) {
+          
           // updates enemies killed in current level
           game.dungeon.currentLvl.iterateEnems(1);
           
@@ -56,9 +45,5 @@ class SpriteManager {
         }
       }
     }
-  }
-  
-  void spawn(AbstractSprite sprite){
-    alive.add(sprite);
   }
 }

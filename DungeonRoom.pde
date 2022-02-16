@@ -17,6 +17,7 @@ class DungeonRoom {
     //sets color based off seed to indicate level position and difficulty
     this.col = color(abs(seed * 20), 250 - abs(seed * 20), 0);
     
+    difficultyIndicator = createFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf", 160);
     updateLvl();
   }
   
@@ -43,7 +44,6 @@ class DungeonRoom {
     push();
     fill(col);
     textAlign(CENTER);
-    difficultyIndicator = createFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf", 160);
     textFont(difficultyIndicator);
     text(seed, width/2, height/2 + 80); 
     pop();

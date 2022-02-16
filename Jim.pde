@@ -1,8 +1,11 @@
 class Jim extends AbstractSprite{
+  long wait = 1000; 
+  long mark = 0; 
+  
   Jim(int x, int y, int w, int h) {
-    super(x,y,w,h,"assets/ufo.png");
+    super(x, y, w, h, "assets/ufo.png");
     changeSpeed(); 
-    this.team = 2; 
+    mark = millis();
   }
   
   void changeSpeed() {
@@ -11,13 +14,17 @@ class Jim extends AbstractSprite{
   }
   
   void fire() {
-    Projectile bullet = new Projectile((x),(y),game.player.getXSpeed(), game.player.getYSpeed(), 25, 25,(100), this); 
-    game.spawn(bullet); 
+    if(millis() - mark > wait) {
+      mark = millis();
+      Projectile bullet = new Projectile(x, y, game.player.x, game.player.y, 25, 25, color(100), this); 
+      game.spawn(bullet);
+    }
   }
   
   void move() {
     x += xspeed;
     y += yspeed; 
+    fire();
     if(x > width || x < 0) {
       xspeed *= -1; 
     }
@@ -25,5 +32,4 @@ class Jim extends AbstractSprite{
       yspeed *= -1; 
     }
   }
-
 }

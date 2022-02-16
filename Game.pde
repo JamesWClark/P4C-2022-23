@@ -6,9 +6,9 @@ class Game {
   Player player;
   
   // treat as private
-  UIManager ui = new UIManager();
-  SpriteManager sprites = new SpriteManager();
-  DungeonCoordinator dungeon = new DungeonCoordinator();
+  UIManager ui;
+  SpriteManager sprites;
+  DungeonCoordinator dungeon;
   
   PImage BG;
   boolean paused = false;   
@@ -20,6 +20,11 @@ class Game {
     noStroke();
     rectMode(CENTER);
     imageMode(CENTER);
+    
+    ui = new UIManager();
+    dungeon = new DungeonCoordinator();
+    sprites = new SpriteManager();
+
   }
   
   // sprite proxy
@@ -29,7 +34,7 @@ class Game {
   
   // sprite proxy
   void spawn(AbstractSprite target) {
-    this.sprites.spawn(target);
+    this.sprites.alive.add(target);
   }
   
   // ui proxy
@@ -42,7 +47,7 @@ class Game {
     config();
     dungeon.addSymbols();
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    sprites.spawn(player); 
+    this.spawn(player); 
   }
   
   // draw
@@ -62,19 +67,5 @@ class Game {
   // keyReleased
   void keyUp() {
     this.player.setMovement(key, keyCode, false);
-  }
-  
-  long wait = 1000; 
-  long mark = 0; 
-  
-  void checkEnemy(){
-    if(millis() - mark > wait) {
-      for(int i = 0; i < sprites.alive.size(); i++){
-        if(sprites.alive.get(i) instanceof Jim) {
-        Jim jim = (Jim)sprites.alive.get(i);
-        jim.fire(); 
-        }
-    }}
-  } 
-  
+  }  
 }

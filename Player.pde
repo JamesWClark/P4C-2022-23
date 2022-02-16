@@ -35,6 +35,7 @@ class Player extends AbstractSprite {
   
   void render(){
    //player
+   fill(0);
    ellipse(x, y, 50, 50);
    
    //appendages
@@ -167,7 +168,7 @@ class Player extends AbstractSprite {
   }
   
   void fire(){
-   Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100));
-   game.sprites.spawn(bullet);
+   Projectile bullet = new Projectile(x, y, mouseX, mouseY, 25, 25, (100), this);
+   game.spawn(bullet);
  }
 }
