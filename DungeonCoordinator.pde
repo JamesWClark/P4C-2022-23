@@ -45,6 +45,7 @@ class DungeonCoordinator {
         for(int x = 0; x < this.currentLvl.enems.length; x++){
           //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
           game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+          game.spawn(new Bill(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
         }
       } catch (NullPointerException e) {
        // e.printStackTrace();
