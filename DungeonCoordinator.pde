@@ -20,11 +20,43 @@ class DungeonCoordinator {
   }
   
   void levelLoad(){
+<<<<<<< HEAD:DungeonCoordinator.pde
     this.addSymbols();    
     //spawns in enemies based on currentlevel enemy count 
     for(int i = 0; i < this.currentLvl.enems.length; i++){
       game.spawn(currentLvl.enems[i]);
     } 
+=======
+    //clears sprites to make room for new level sprites
+    if(game.sprites.alive.size() > 0){
+      try{
+        ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>(game.sprites.alive);
+        for(AbstractSprite s: game.sprites.alive){
+          game.sprites.pendDelete(s);
+        }
+        game.sprites.alive = sprites;
+      } catch (NullPointerException e){
+        e.printStackTrace();
+      }      
+    }
+    
+    this.addSymbols();
+    
+    // TODO: DELETE
+    game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
+    game.spawn(game.player); 
+    
+    if(this.currentLvl.enems.length > 0){
+      try{
+        for(int i = 0; i < this.currentLvl.enems.length; i++){
+          game.spawn(currentLvl.enems[i]);
+        }
+          currentLvl.updateLvl();
+      } catch (NullPointerException e) {
+        e.printStackTrace();
+      }    
+    }
+>>>>>>> 8d9cf8a1ad50025cb152be864fa8027b2628f59d:DungeonCoorindator.pde
   }
 
   void changeLevels(String direction) {

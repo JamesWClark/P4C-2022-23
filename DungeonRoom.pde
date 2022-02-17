@@ -5,7 +5,10 @@ class DungeonRoom implements SpriteObserver {
   color col = color(0, 250, 0);
   PFont difficultyIndicator; //loadFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf");
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8d9cf8a1ad50025cb152be864fa8027b2628f59d
   AbstractSprite enems[] = new AbstractSprite[0];
   
   DungeonRoom(int lvlX, int lvlY){
@@ -25,6 +28,7 @@ class DungeonRoom implements SpriteObserver {
   void updateLvl(){
     enems = new AbstractSprite[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
+<<<<<<< HEAD
       if(i % 4 == 0 && i != 0){
         ArmorBoi e = new ArmorBoi(generateRandSpawnX(), generateRandSpawnY());
         enems[i] = e;
@@ -37,6 +41,14 @@ class DungeonRoom implements SpriteObserver {
       }else{
         Bob e = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = e;
+=======
+      if(i % 3 == 0){
+        Zombie z = new Zombie(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
+        enems[i] = z;
+      } else{
+        Bob b = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
+        enems[i] = b;
+>>>>>>> 8d9cf8a1ad50025cb152be864fa8027b2628f59d
       }
     }
   }
