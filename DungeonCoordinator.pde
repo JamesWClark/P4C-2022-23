@@ -21,30 +21,10 @@ class DungeonCoordinator {
   
   void levelLoad(){
     this.addSymbols();    
-    
-<<<<<<< HEAD
     //spawns in enemies based on currentlevel enemy count 
     for(int i = 0; i < this.currentLvl.enems.length; i++){
       game.spawn(currentLvl.enems[i]);
     } 
-=======
-    this.addSymbols();
-    
-    // TODO: DELETE
-    game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    game.spawn(game.player); 
-    
-    if(this.currentLvl.enems.length > 0){
-      try{
-        for(int i = 0; i < this.currentLvl.enems.length; i++){
-          game.spawn(currentLvl.enems[i]);
-        }
-          currentLvl.updateLvl();
-      } catch (NullPointerException e) {
-        e.printStackTrace();
-      }    
-    }
->>>>>>> 8d9cf8a (Enemies can now spawn with variety, and they won't spawn on top of the player)
   }
 
   void changeLevels(String direction) {

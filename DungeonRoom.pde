@@ -25,27 +25,18 @@ class DungeonRoom implements SpriteObserver {
   void updateLvl(){
     enems = new AbstractSprite[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
-<<<<<<< HEAD
-      if(i % 4 == 0){
+      if(i % 4 == 0 && i != 0){
         ArmorBoi e = new ArmorBoi(generateRandSpawnX(), generateRandSpawnY());
         enems[i] = e;
-      } else if(i % 3 == 0){
+      } else if(i % 3 == 0  && i != 0){
         Jim e = new Jim(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = e;
-      } else if(i % 2 == 0){
+      } else if(i % 2 == 0  && i != 0){
         Zombie e = new Zombie(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = e;
       }else{
         Bob e = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = e;
-=======
-      if(i % 3 == 0){
-        Zombie z = new Zombie(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
-        enems[i] = z;
-      } else{
-        Bob b = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
-        enems[i] = b;
->>>>>>> 8d9cf8a (Enemies can now spawn with variety, and they won't spawn on top of the player)
       }
     }
   }
