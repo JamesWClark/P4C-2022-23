@@ -28,7 +28,7 @@ class Game {
     this.ui.hud.add(component); 
   }
   
-    // main setup
+  // main setup
   void config() {
     BG = loadImage("assets/background.png");
     BG.resize(width, height);
@@ -49,7 +49,7 @@ class Game {
     config();
     dungeon.addSymbols();
     player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    this.spawn(player); 
+    this.spawn(player);
   }
   
   // main draw

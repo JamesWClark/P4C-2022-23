@@ -3,7 +3,7 @@ class Jim extends AbstractSprite{
   long mark = 0; 
   
   Jim(int x, int y, int w, int h) {
-    super(x, y, w, h, "assets/ufo.png");
+    super(x, y, w, h, "assets/station.png");
     changeSpeed(); 
     mark = millis();
   }

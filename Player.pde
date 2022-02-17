@@ -17,22 +17,6 @@ class Player extends AbstractSprite {
     team = 0;
   }
   
-  int getXSpeed(){
-   return xspeed; 
-  }
-  
-  int getYSpeed(){
-   return yspeed; 
-  }
-  
-  void setXSpeed(int xspeed){
-    this.xspeed = xspeed; 
-  }
-  
-  void setYSpeed(int yspeed){
-    this.yspeed = yspeed; 
-  }
-  
   void render(){
    //player
    fill(0);
