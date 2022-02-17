@@ -23,15 +23,22 @@ class DungeonRoom {
   void updateLvl(){
     enems = new AbstractSprite[seed - enemsKilled];
     for(int i = 0; i < enems.length; i++){
-      if(i % 1 == 0){
-        Zombie z = new Zombie((int)(width/2)+i*50, (int)(height/2)+i*50, 100, 100);
+      if(i % 3 == 0){
+        Zombie z = new Zombie(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = z;
       } else{
-        Bob b = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
+        Bob b = new Bob(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
         enems[i] = b;
       }
-
     }
+  }
+  // enemies kept spawning on the player, so I changed the random spawn position 
+  // to be within bounds that could not be on top of a player in any doorway (i.e. center-ish of the screen)
+  int generateRandSpawnX(){
+    return (int)(random(width/3, width/1.5));
+  }
+  int generateRandSpawnY(){
+    return (int)(random(height/3, height/1.5));
   }
   
   void iterateEnems(int iterate){
@@ -49,6 +56,12 @@ class DungeonRoom {
     difficultyIndicator = createFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf", 160);
     textFont(difficultyIndicator);
     text(seed, width/2, height/2 + 80); 
+    //this is just here to show the area where enemies can spawn
+    /*
+    rectMode(CORNERS);
+    rect(width/3, height/3, width/1.5, height/1.5);
+    rectMode(CENTER);
+    */
     pop();
   }
 }

@@ -38,13 +38,12 @@ class DungeonCoordinator {
     game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
     game.spawn(game.player); 
     
-    
-    //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
     if(this.currentLvl.enems.length > 0){
       try{
-        for(int x = 0; x < this.currentLvl.enems.length; x++){
-          game.spawn(new Zombie((int)(width/2), (int)(height/2), 100, 100));
+        for(int i = 0; i < this.currentLvl.enems.length; i++){
+          game.spawn(currentLvl.enems[i]);
         }
+          currentLvl.updateLvl();
       } catch (NullPointerException e) {
         e.printStackTrace();
       }    
