@@ -55,7 +55,6 @@ abstract class AbstractSprite implements Sprite {
   void handleCollision(AbstractSprite other) {
     hp -= other.attack;
     if(hp <= 0){
-      println("DIE");
       game.destroy(this);
     }
   }
