@@ -38,7 +38,7 @@ class DungeonCoordinator {
             game.spawn(new ArmorBoi(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y));
             break;
           case 4:
-            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            game.spawn(new Redneck(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
             break;
           case 5:
             game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
