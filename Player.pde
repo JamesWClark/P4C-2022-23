@@ -150,6 +150,7 @@ class Player extends AbstractSprite {
         case ' ':
           if(b == false){
             fire();
+            Stats.shotsFired++;
           }
           break;
       }
