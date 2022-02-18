@@ -40,14 +40,16 @@ class Bob extends AbstractSprite {
     }
   }
   
+  /* 
   @Override
   boolean collide(AbstractSprite other) {
     if(super.collide(other)) {
-      collision((Bob)other);
+      collision((Bob)other); // crash on projectile (not bob)
       return true;
     }
     return false;
   }
+  */
   
 
   void collision(Bob other){

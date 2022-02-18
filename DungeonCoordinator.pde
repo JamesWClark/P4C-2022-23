@@ -1,10 +1,11 @@
 class DungeonCoordinator {
-  
+
   int playerLevelX = 0, 
       playerLevelY = 0;
   
   int symbolIndexList[] = new int[4];
   ArrayList<DungeonRoom> lvls = new ArrayList<DungeonRoom>();
+  
   DungeonRoom currentLvl;
   DungeonRoom adjacentLvls[] = new DungeonRoom[4];
 
@@ -19,42 +20,40 @@ class DungeonCoordinator {
   }
   
   void levelLoad(){
-    //clears sprites to make room for new level sprites
-    if(game.sprites.alive.size() > 0){
-      try{
-        ArrayList<AbstractSprite> sprites = new ArrayList<AbstractSprite>(game.sprites.alive);
-        for(AbstractSprite s: game.sprites.alive){
-          game.sprites.pendDelete(s);
-        }
-        game.sprites.alive = sprites;
-      } catch (NullPointerException e){
-      //  e.printStackTrace();
-      }      
-    }
-    
-    this.addSymbols();
-    
-    // TODO: DELETE
-    game.player = new Player(width/2, height-100, 50, 50, color(#17c3b2));
-    game.spawn(game.player); 
-    
+    this.addSymbols();    
     
     //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
     if(this.currentLvl.enems.length > 0){
-      try{
-        for(int x = 0; x < this.currentLvl.enems.length; x++){
-          //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-          game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+      for(int x = 0; x < this.currentLvl.enems.length; x++){
+        //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+        switch(x) {
+          case 0:
+          case 1:
+            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));        
+            break;
+          case 2:
+            game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            break;
+          case 3:
+            game.spawn(new ArmorBoi(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y));
+            break;
+          case 4:
+            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            break;
+          case 5:
+            game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            break;
+          default:
+            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            break;
         }
-      } catch (NullPointerException e) {
-       // e.printStackTrace();
-      }    
+      }   
     }
   }
 
   void changeLevels(String direction) {
     //allows the player to move to a new level if they've killed every enemy in the current level
-    if(currentLvl.enemsKilled == currentLvl.enems.length){
+    if(currentLvl.enemsKilled >= currentLvl.enems.length){
       currentLvl.unlocked = true;
     }
    
@@ -89,9 +88,12 @@ class DungeonCoordinator {
     if(hasBeenMade){
       currentLvl = lvls.get(originalIndex);
       currentLvl.updateLvl();
+      game.sprites.registerObserver(currentLvl);
     } else{
+      game.sprites.deregisterObserver(currentLvl);
       currentLvl = new DungeonRoom(playerLevelX, playerLevelY);
       lvls.add(currentLvl);
+      game.sprites.registerObserver(currentLvl);
     }
       
     // store previous location of player

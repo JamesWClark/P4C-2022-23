@@ -1,4 +1,4 @@
-class DungeonRoom {
+class DungeonRoom implements SpriteObserver {
   
   int seed = 0, lvlX, lvlY, enemsKilled = 0;
   boolean unlocked = false;
@@ -22,23 +22,19 @@ class DungeonRoom {
   }
   
   void updateLvl(){
-    //enems = new Bob[seed - enemsKilled];
-    enems = new Jim[seed - enemsKilled];
-    for(int i = 0; i < enems.length; i++){
-      //Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
-      Jim jim = new Jim((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
-      //enems[i] = bob;
-      enems[i] = jim;
+    enems = new AbstractSprite[constrain(seed - enemsKilled, 0, seed)];
+    for(int i = 0; i < enems.length; i++) {
+      Bob bob = new Bob((int)(Math.random() * width), (int)(Math.random() * height), 100, 100);
+      enems[i] = bob;
     }
   }
   
-  void iterateEnems(int iterate){
-    enemsKilled += iterate;
-    if(enemsKilled == enems.length){
-      game.dungeon.updateSymbols();
+  void observeDeath(AbstractSprite sprite) {
+    if(!(sprite instanceof Projectile)) {
+      enemsKilled += 1;    
     }
   }
-  
+    
   void decorateLvl(){
     //sets level decorations
     push();
