@@ -5,7 +5,7 @@ class DungeonRoom implements SpriteObserver {
   color col = color(0, 250, 0);
   PFont difficultyIndicator; //loadFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf");
   
-  AbstractSprite enems[] = new Jim[0];
+  AbstractSprite enems[] = new AbstractSprite[0];
 
   DungeonRoom(int lvlX, int lvlY){
     this.lvlX = lvlX;

@@ -25,11 +25,12 @@ class DungeonCoordinator {
     //spawns in enemies based on currentlevel enemy count and arbitrary enemy positions
     if(this.currentLvl.enems.length > 0){
       for(int x = 0; x < this.currentLvl.enems.length; x++){
-        //game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
-        switch(x) {
+       switch(x) {
           case 0:
-          case 1:
             game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));        
+            break;
+          case 1:
+            game.spawn(new Bill(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));            
             break;
           case 2:
             game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
@@ -38,7 +39,7 @@ class DungeonCoordinator {
             game.spawn(new ArmorBoi(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y));
             break;
           case 4:
-            game.spawn(new Bob(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
+            game.spawn(new Bill(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
             break;
           case 5:
             game.spawn(new Jim(this.currentLvl.enems[x].x, this.currentLvl.enems[x].y, this.currentLvl.enems[x].w, this.currentLvl.enems[x].h));
