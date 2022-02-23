@@ -26,6 +26,8 @@ class DungeonRoom implements SpriteObserver {
     for(int i = 0; i < enems.length; i++){
       if(i % 4 == 0 && i != 0){
         enems[i] = new ArmorBoi(generateRandSpawnX(), generateRandSpawnY());
+      } else if(i % 6 == 0 && i != 0) {
+        enems[i] = new Redneck(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
       } else if(i % 5 == 0 && i != 0) {
         enems[i] = new Bill(generateRandSpawnX(), generateRandSpawnY(), 100, 100);
       } else if(i % 3 == 0  && i != 0){
