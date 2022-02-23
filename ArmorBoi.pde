@@ -3,7 +3,7 @@ class ArmorBoi extends AbstractSprite{
   
   public ArmorBoi(int x, int y){
     super(x, y, 125, 125);
-    hp = 25;
+    hp = 10;
   }
   
   void render() {
