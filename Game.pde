@@ -56,8 +56,6 @@ class Game {
   // main draw
   void play() {
     background(BG);
-
-
     dungeon.coordinate();
     sprites.manage();
     ui.manage();

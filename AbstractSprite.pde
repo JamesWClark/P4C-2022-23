@@ -52,6 +52,7 @@ abstract class AbstractSprite implements Sprite {
    * A collision was detected between two sprites of differing teams
    * @param other - the opposing sprite
    */
+   
   void handleCollision(AbstractSprite other) {
     hp -= other.attack;
     if(hp <= 0){
