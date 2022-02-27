@@ -128,6 +128,10 @@ class Player extends AbstractSprite {
         case 'D':
           moveKeys[3] = b;
           break;   
+        case 'R': 
+        case 'r':
+          game.load();
+          break;   
           
         //misc. keys
           //fire
