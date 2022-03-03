@@ -18,6 +18,7 @@ class Game {
     this.sprites.pendDelete(target);
   }
   
+  
   // sprite proxy
   void spawn(AbstractSprite target) {
     this.sprites.alive.add(target);

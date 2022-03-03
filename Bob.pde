@@ -51,6 +51,7 @@ class Bob extends AbstractSprite {
   }
   */
   
+
   void collision(Bob other){
     int finalXspeed = (abs(xspeed)+abs(other.getXSpeed()))/2;
     int finalYspeed = (abs(yspeed)+abs(other.getYSpeed()))/2;

@@ -20,7 +20,8 @@ class DungeonCoordinator {
   }
   
   void levelLoad(){
-    this.addSymbols();    
+    this.addSymbols();
+    game.spawn(new Drops());
 
     //spawns in enemies based on currentlevel enemy count 
     for(int i = 0; i < this.currentLvl.enems.length; i++){

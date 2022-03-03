@@ -3,6 +3,7 @@ class Projectile extends AbstractSprite {
   double rise, run, slope, degree;
   double theta, vx, vy;
   
+
   public Projectile(int x, int y, int finalX, int finalY, int w, int h, color col, AbstractSprite owner) {
     super(x, y, w, h, col); 
     rise = finalY - y;

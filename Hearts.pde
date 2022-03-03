@@ -11,12 +11,22 @@ class Hearts implements UIComponent{
   void loseHeart(){
     heartsLeft--;
     //Addes a delete request eachtime loseHearts is called
+    //deletes all hearts from hud
     game.ui.pendDeleteUI(game.player.hearts);
+    //adds new amount of hearts to hud
+    game.ui.activate(this);
     // game.ui.deleteUI();
     if(heartsLeft <= 0){
        game.sprites.pendDelete(game.player);
        game.player.ammo.canShoot = false; 
     }
+  }
+
+  void gainHeart(){
+    heartsLeft++;
+    //deletes all hearts from hud then re-adds them with the new amount
+    game.ui.pendDeleteUI(game.player.hearts);
+    game.ui.activate(this);
   }
   
   void render(){

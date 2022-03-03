@@ -54,7 +54,6 @@ class Player extends AbstractSprite {
    popMatrix();
   }
 
- 
   void move() {
     //increases speed if sprinting
     if(moveKeys[4]){
@@ -134,6 +133,7 @@ class Player extends AbstractSprite {
         case ' ':
           if(b == false){
             fire();
+            Stats.shotsFired++;
           }
           break;
       }
@@ -148,7 +148,11 @@ class Player extends AbstractSprite {
   
   @Override
   void handleCollision(AbstractSprite other) {
-    this.hearts.loseHeart();
+    if(other instanceof Drops){
+      this.hearts.gainHeart();
+    }else{
+      this.hearts.loseHeart();
+    }
   }
   
   void fire(){
