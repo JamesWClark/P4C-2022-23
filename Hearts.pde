@@ -1,7 +1,6 @@
 class Hearts implements UIComponent{
   int heartsLeft;
-  PImage sprite;
-  
+  PImage sprite; 
   Hearts(int lives){
     this.heartsLeft = lives;
     sprite = loadImage("assets/heart.png");
@@ -19,6 +18,13 @@ class Hearts implements UIComponent{
     if(heartsLeft <= 0){
        game.sprites.pendDelete(game.player);
        game.player.ammo.canShoot = false; 
+    PFont font = createFont("assets/futurefont/MADE Future X Bold PERSONAL USE.otf", 50);
+       push();
+    fill(0,0,0);
+    textAlign(CENTER);
+    textFont(font);
+    text("Press R to restart", width/2, height/2 + 80); 
+    pop();
     }
   }
 
